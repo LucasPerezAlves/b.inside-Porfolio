@@ -1,0 +1,244 @@
+@import "tailwindcss";
+
+/* ─── Dark mode via .dark class no <html> ────────────────────────────────── */
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Tailwind v4: tokens que referenciam CSS vars (hot-swap light/dark) ─── */
+@theme inline {
+  /* Fonts */
+  --font-sans:  var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-mono:  var(--font-mono);
+
+  /* Colors */
+  --color-background:           var(--background);
+  --color-foreground:           var(--foreground);
+  --color-card:                 var(--card);
+  --color-card-foreground:      var(--card-foreground);
+  --color-muted:                var(--muted);
+  --color-muted-foreground:     var(--muted-foreground);
+  --color-border:               var(--border);
+  --color-input:                var(--input);
+  --color-ring:                 var(--ring);
+  --color-accent:               var(--accent);
+  --color-accent-subtle:        var(--accent-subtle);
+  --color-accent-foreground:    var(--accent-foreground);
+  --color-primary:              var(--primary);
+  --color-primary-foreground:   var(--primary-foreground);
+  --color-secondary:            var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive:          var(--destructive);
+
+  /* Radius */
+  --radius-sm:   var(--radius-sm);
+  --radius-md:   var(--radius-md);
+  --radius-lg:   var(--radius-lg);
+  --radius-xl:   var(--radius-xl);
+  --radius-2xl:  var(--radius-2xl);
+  --radius-3xl:  var(--radius-3xl);
+  --radius-full: 9999px;
+}
+
+/* ─── CSS Variables ──────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    /* Fonts */
+    --font-sans:  'Inter', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
+    --font-mono:  ui-monospace, 'JetBrains Mono', Consolas, monospace;
+
+    /* ── LIGHT MODE: "White Colorido / Bem Menina" ──
+       Blush off-white + rose-magenta vibrante + bordas rosadas
+    ─────────────────────────────────────────────── */
+    --background:       #FDF9FB;
+    --foreground:       #1A1118;
+
+    --card:             #FFFFFF;
+    --card-foreground:  #1A1118;
+
+    --muted:            #F5EFF2;
+    --muted-foreground: #8B7280;
+
+    --border:           #EBE0E6;
+    --input:            #EBE0E6;
+    --ring:             #D4587E;
+
+    /* Rose-magenta — viva e sofisticada, não neon */
+    --accent:           #D4587E;
+    --accent-subtle:    #FCEAF1;
+    --accent-foreground:#FFFFFF;
+
+    --primary:          #1A1118;
+    --primary-foreground:#FDF9FB;
+
+    --secondary:        #F5EFF2;
+    --secondary-foreground: #1A1118;
+
+    --destructive:      #DC2626;
+
+    /* Radius */
+    --radius-sm:  4px;
+    --radius-md:  6px;
+    --radius-lg:  10px;
+    --radius-xl:  14px;
+    --radius-2xl: 20px;
+    --radius-3xl: 28px;
+
+    /* Sombra colorida para o modo menina (usada no foto card) */
+    --photo-shadow:
+      0 24px 64px -8px rgba(212, 88, 126, 0.2),
+      0 4px 20px -4px rgba(212, 88, 126, 0.12);
+    --photo-ring: rgba(212, 88, 126, 0.25);
+
+    /* Gradientes de categoria — light */
+    --card-gradient-branding: linear-gradient(145deg, #FDE4EE 0%, #F7CCDF 60%, #F0C0D5 100%);
+    --card-gradient-traffic:  linear-gradient(145deg, #EAE3FF 0%, #D8CCFF 60%, #CABEFF 100%);
+    --card-gradient-content:  linear-gradient(145deg, #D4F5EA 0%, #C0EED9 60%, #AAEACB 100%);
+    --card-gradient-launch:   linear-gradient(145deg, #FEF3CF 0%, #FDE9B2 60%, #FCE098 100%);
+  }
+
+  /* ── DARK MODE: "Black Premium" ──
+     Preto puro + champanhe dourado + autoridade executiva
+  ────────────────────────────────── */
+  .dark {
+    --background:       #09090B;
+    --foreground:       #FAFAFA;
+
+    --card:             #111113;
+    --card-foreground:  #FAFAFA;
+
+    --muted:            #18181B;
+    --muted-foreground: #71717A;
+
+    --border:           #27272A;
+    --input:            #27272A;
+    --ring:             #C9A96E;
+
+    /* Champanhe dourado — luxo silencioso */
+    --accent:           #C9A96E;
+    --accent-subtle:    #1C1812;
+    --accent-foreground:#09090B;
+
+    --primary:          #FAFAFA;
+    --primary-foreground:#09090B;
+
+    --secondary:        #27272A;
+    --secondary-foreground: #FAFAFA;
+
+    --destructive:      #EF4444;
+
+    --photo-shadow:
+      0 24px 64px -8px rgba(201, 169, 110, 0.1),
+      0 0 0 1px rgba(201, 169, 110, 0.12);
+    --photo-ring: rgba(201, 169, 110, 0.2);
+
+    /* Gradientes de categoria — dark */
+    --card-gradient-branding: linear-gradient(145deg, #2A151E 0%, #3A1B28 60%, #1F1018 100%);
+    --card-gradient-traffic:  linear-gradient(145deg, #181830 0%, #1E1A38 60%, #13102C 100%);
+    --card-gradient-content:  linear-gradient(145deg, #0D2018 0%, #122A22 60%, #08180F 100%);
+    --card-gradient-launch:   linear-gradient(145deg, #251800 0%, #301E03 60%, #1A1004 100%);
+  }
+
+  /* ─── Resets globais ─── */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    margin: 0;
+    transition:
+      background-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    color: var(--foreground);
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+
+  /* Scrollbar minimalista */
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+
+  /* Seleção de texto com acento da marca */
+  ::selection {
+    background: var(--accent-subtle);
+    color: var(--accent);
+  }
+}
+
+/* ─── Utilitários premium ────────────────────────────────────────────────── */
+@layer utilities {
+  /* Display sizes (clamp responsivo) */
+  .text-display-2xl { font-size: clamp(3.5rem, 7vw,   6.5rem); }
+  .text-display-xl  { font-size: clamp(3rem,   6vw,   5.5rem); }
+  .text-display-lg  { font-size: clamp(2.5rem, 5vw,   4.5rem); }
+  .text-display-md  { font-size: clamp(2rem,   4vw,   3.5rem); }
+  .text-display-sm  { font-size: clamp(1.5rem, 3vw,   2.5rem); }
+
+  /* Tracking editorial */
+  .tracking-editorial  { letter-spacing: -0.035em; }
+  .tracking-ultra      { letter-spacing: -0.05em; }
+  .tracking-label      { letter-spacing: 0.1em; }
+  .tracking-label-wide { letter-spacing: 0.15em; }
+
+  /* Gradiente de texto (acento) */
+  .text-gradient-accent {
+    background: linear-gradient(
+      135deg,
+      var(--accent) 0%,
+      color-mix(in srgb, var(--accent) 60%, white) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Linha decorativa com gradiente */
+  .divider-fade {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+  }
+
+  /* Container principal */
+  .portfolio-container {
+    width: 100%;
+    max-width: 1160px;
+    margin-inline: auto;
+    padding-inline: clamp(1.25rem, 5vw, 4rem);
+  }
+
+  /* Foto card — sombra colorida via CSS var */
+  .photo-shadow {
+    box-shadow: var(--photo-shadow);
+  }
+  .photo-ring {
+    outline: 1px solid var(--photo-ring);
+    outline-offset: 6px;
+  }
+}
