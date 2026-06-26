@@ -1,32 +1,50 @@
-# React + TypeScript + Vite
+# 🎥 b.inside — Portfólio Profissional & Visual Curation
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+<p align="center">
+  <img src="./public/images/feedbacks/ensaioCasual.jpg" alt="b.inside Banner" width="100%" max-height="300px" style="object-fit: cover; border-radius: 8px;">
+</p>
 
-Currently, two official plugins are available:
+## 📌 Sobre o Projeto
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Este projeto nasceu com o propósito de tirar do papel o posicionamento digital premium da **b.inside**, marca e agência de marketing de conteúdo comandada pela profissional **Kailane**, baseada em Santa Catarina. 
 
-## React Compiler
+Desenvolvido de forma personalizada como um presente de apoio profissional para uma grande amiga, o ecossistema foi projetado para ir além de um portfólio comum de estudante: ele funciona como uma ferramenta de conversão de alto impacto para prospecção de clientes e marcas que buscam serviços de **Storymaking, Fotografia, Social Media e Direção Visual**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the Oxlint configuration
+## 🚀 Funcionalidades & Diferenciais de Experiência
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+*   **Identidade Adaptativa Dupla (Dual Theme):** O site conta com uma transição fluida entre dois ecossistemas visuais completos:
+    *   *Modo White ("Bem Menina"):* Uma abordagem com paleta macia, suave e romântica.
+    *   *Modo Black ("Premium"):* Uma atmosfera com tons escuros profundos e contraste cinematográfico de alta sofisticação.
+*   **Carrossel de Depoimentos 3D (*Circular Testimonials*):** Integração avançada de um componente premium da *Northstrix*, que rotaciona os feedbacks reais de clientes em perspectiva tridimensional tracionada por física de movimento.
+*   **Feedbacks 100% Reais:** Toda a área de depoimentos utiliza transcrições exatas de mensagens de clientes atendidos pela marca (desde ensaios corporativos até casamentos e coberturas de festas infantis), associados a imagens conceituais fictícias representativas de cada nicho.
+*   **Foco em Conversão (CTA Magnética):** Copywriting estruturado e gatilhos de fechamento direcionando o cliente diretamente para o canal de atendimento no WhatsApp com mensagens pré-configuradas.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+---
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## 🛠️ Tecnologias Utilizadas
+
+O projeto foi construído utilizando as melhores práticas do ecossistema moderno de desenvolvimento web focado em performance e fidelidade visual:
+
+*   **[React](https://react.dev/) / [Vite](https://vitejs.dev/)** (ou **Next.js**) — Como biblioteca base para componentização limpa e renderização performática.
+*   **[Tailwind CSS](https://tailwindcss.com/)** — Framework utilitário para estilização ágil, garantindo responsividade pixel-perfect e transição de classes eficiente nos modos claro/escuro.
+*   **[Framer Motion](https://www.framer.com/motion/)** — Engine de animações robusta utilizada para controlar as transições de opacidade, o efeito de desfoque progressivo na renderização de textos (*blur words*) e o empilhamento dos cards.
+*   **React Icons** — Pacote de micro-interações de ícones vetoriais modernos integrados nativamente.
+*   **GH-Pages** — Automação de empacotamento (`build`) e deploy contínuo direto no ecossistema do GitHub Pages.
+
+---
+
+## 📐 Técnicas de Engenharia & Arquitetura aplicadas
+
+*   **Visual Curation & Clean Code:** Separação estrita entre a camada de apresentação (componentes UI) e a camada de dados (`src/data/portfolioData.js`), permitindo que novos trabalhos ou depoimentos sejam injetados no futuro sem mexer na estrutura lógica do código.
+*   **Mapeamento Cirúrgico Estático:** Gestão otimizada de assets utilizando caminhos relativos na pasta raíz pública (`/images/feedbacks/`), controlando variações de extensões de arquivos (`.jpg` e `.jpeg`) para otimização de cache e carregamento ágil na CDN do GitHub.
+*   **Responsividade Dinâmica:** Algoritmo matemático para cálculo de espaçamento de contêineres (`calculateGap`) baseado no *viewport* do usuário, garantindo que o efeito 3D não quebre ou corte em telas de smartphones ou monitores Ultrawide.
+
+---
+
+## 📦 Como rodar o projeto localmente
+
+1. Clone este repositório:
+   ```bash
+   git clone [https://github.com/LucasPerezAlves/b.inside-Porfolio.git](https://github.com/LucasPerezAlves/b.inside-Porfolio.git)
