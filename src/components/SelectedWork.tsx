@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ArrowUpRight, ChevronRight, Play } from 'lucide-react'
 import { projects, type Project, type MediaItem } from '@/data/portfolioData'
-import { cn } from '@/lib/utils'
+import { cn, imgUrl } from '@/lib/utils'
 
 // ── Constantes ────────────────────────────────────────────────────────────────
 
@@ -59,8 +59,8 @@ function MediaCard({ item, index }: MediaCardProps) {
         className="sm:col-span-2 overflow-hidden rounded-2xl border border-border bg-black dark:bg-black"
       >
         <video
-          src={item.url}
-          poster={item.poster}
+          src={imgUrl(item.url)}
+          poster={item.poster ? imgUrl(item.poster) : undefined}
           controls
           preload="metadata"
           playsInline
@@ -89,7 +89,7 @@ function MediaCard({ item, index }: MediaCardProps) {
       <div className={cn('overflow-hidden relative', aspectClass, 'bg-muted')}>
         {!imgError ? (
           <img
-            src={item.url}
+            src={imgUrl(item.url)}
             alt={item.caption ?? ''}
             loading="lazy"
             className="w-full h-full object-cover"
@@ -167,8 +167,8 @@ function ProjectCard({ project, index, onClick }: CardProps) {
         {project.type === 'video' ? (
           <video
             ref={videoRef}
-            src={project.mediaUrl}
-            poster={project.poster}
+            src={imgUrl(project.mediaUrl)}
+            poster={project.poster ? imgUrl(project.poster) : undefined}
             muted
             loop
             playsInline
@@ -178,7 +178,7 @@ function ProjectCard({ project, index, onClick }: CardProps) {
           />
         ) : (
           <img
-            src={project.mediaUrl}
+            src={imgUrl(project.mediaUrl)}
             alt={project.title}
             loading="lazy"
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
@@ -340,7 +340,7 @@ function ProjectModal({ project, onClose }: ModalProps) {
             style={{ background: CATEGORY_GRADIENT[project.category] ?? 'var(--muted)' }}
           />
           <img
-            src={coverSrc}
+            src={imgUrl(coverSrc)}
             alt={project.title}
             className="absolute inset-0 w-full h-full object-cover"
             onError={e => (e.currentTarget.style.display = 'none')}

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaQuoteRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
+import { imgUrl } from '@/lib/utils'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -153,7 +154,7 @@ export function CircularTestimonials({
                 }}
               >
                 <img
-                  src={t.src}
+                  src={imgUrl(t.src)}
                   alt={t.name}
                   loading="lazy"
                   draggable={false}

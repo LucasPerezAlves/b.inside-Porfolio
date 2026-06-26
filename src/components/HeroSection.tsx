@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, Check, Copy, MapPin } from 'lucide-react'
 import { profile } from '@/data/portfolioData'
-import { cn } from '@/lib/utils'
+import { cn, imgUrl } from '@/lib/utils'
 
 // ── Variantes de animação ──────────────────────────────────────────────────
 
@@ -325,7 +325,7 @@ export function HeroSection() {
 
               {/* Foto real — oculta o placeholder quando o src carrega */}
               <img
-                src={profile.avatar}
+                src={imgUrl(profile.avatar)}
                 alt={`Foto profissional de ${profile.fullName}`}
                 className="absolute inset-0 w-full h-full object-cover object-top"
                 loading="eager"
