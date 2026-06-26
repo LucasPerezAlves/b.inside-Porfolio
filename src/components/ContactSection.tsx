@@ -255,7 +255,7 @@ export function ContactSection() {
           </div>
         </div>
 
-        {/* ── Créditos do desenvolvedor — card fixo ── */}
+        {/* ── Créditos do desenvolvedor — card fixo mobile-first ── */}
         <div className="portfolio-container pb-6">
           <div className="h-px bg-border/20 mb-5" />
 
@@ -263,21 +263,29 @@ export function ContactSection() {
             whileHover={{ y: -3 }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             className={cn(
-              'group flex items-center gap-4 p-4 rounded-2xl cursor-default select-none',
-              // Light: fundo off-white com borda delicada
+              // Mobile: coluna centralizada | Desktop: linha alinhada à esquerda
+              'group w-full flex flex-col sm:flex-row',
+              'items-center sm:items-start',
+              'gap-4 p-5 sm:p-4',
+              'rounded-2xl cursor-default select-none',
+              // Light
               'bg-neutral-50 border border-neutral-200/60',
-              // Dark: preto profundo fosco com borda sutil
+              // Dark
               'dark:bg-[#0c0b0e] dark:border-neutral-800',
             )}
           >
             {/* ── Foto ── */}
-            <div className="flex-shrink-0 w-[68px] h-[68px] rounded-xl overflow-hidden bg-neutral-200 dark:bg-neutral-800">
+            {/* Mobile: 80×80 centralizado | Desktop: 68×68 à esquerda */}
+            <div className={cn(
+              'flex-shrink-0 overflow-hidden rounded-xl',
+              'w-20 h-20 sm:w-[68px] sm:h-[68px]',
+              'bg-neutral-200 dark:bg-neutral-800',
+            )}>
               <img
                 src={imgUrl('/images/criador.jpeg')}
                 alt="Lucas Perez"
                 className={cn(
                   'w-full h-full object-cover object-center',
-                  // Começa em grayscale, ganha cor no hover do card (via group)
                   'grayscale transition-all duration-500 ease-out',
                   'group-hover:grayscale-0',
                 )}
@@ -290,40 +298,41 @@ export function ContactSection() {
             </div>
 
             {/* ── Conteúdo ── */}
-            <div className="flex-1 min-w-0 flex flex-col gap-[3px]">
+            {/* Mobile: centralizado | Desktop: alinhado à esquerda */}
+            <div className={cn(
+              'flex-1 min-w-0 flex flex-col gap-1',
+              'items-center text-center',
+              'sm:items-start sm:text-left',
+            )}>
 
-              {/* Label acima do nome */}
               <p className="text-[10px] uppercase tracking-[0.09em] font-medium text-neutral-400 dark:text-neutral-500">
                 Design &amp; Engenharia de Software
               </p>
 
-              {/* Nome */}
               <p className="font-semibold text-[0.875rem] leading-tight text-neutral-900 dark:text-white">
                 Lucas Perez
               </p>
 
-              {/* Título profissional */}
-              <p className="text-[11px] leading-snug text-neutral-500 dark:text-neutral-400">
+              <p className="text-[11px] leading-snug text-neutral-600 dark:text-neutral-300">
                 Software Developer · Especialista em Manutenção de Sistemas
               </p>
 
-              {/* Bio — só aparece em telas >= sm */}
-              <p className="hidden sm:block text-[11px] leading-[1.72] text-neutral-500 dark:text-neutral-400 mt-0.5">
+              {/* Bio — visível a partir de sm */}
+              <p className="hidden sm:block text-[11px] leading-[1.72] text-neutral-600 dark:text-neutral-400 mt-1">
                 Mente técnica por trás da engenharia deste portfólio, transformando
                 designs complexos e visões de negócios em código performático, fluido e pixel-perfect.
               </p>
 
-              {/* Link GitHub */}
               <a
                 href="https://github.com/LucasPerezAlves"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={cn(
-                  'inline-flex items-center gap-1 mt-1 w-fit',
+                  'inline-flex items-center gap-1 mt-2',
                   'text-[11px] font-medium',
                   'text-neutral-400 dark:text-neutral-500',
                   'hover:text-neutral-900 dark:hover:text-white',
-                  'transition-colors duration-150 group/gh'
+                  'transition-colors duration-150 group/gh',
                 )}
               >
                 <span>Ver no GitHub</span>

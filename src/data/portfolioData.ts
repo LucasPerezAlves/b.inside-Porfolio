@@ -124,8 +124,8 @@ export const profile: Profile = {
     {
       platform: 'whatsapp',
       label:    'WhatsApp',
-      url:      'https://wa.me/5511999999999',
-      handle:   '+55 (11) 99999-9999',
+      url:      'https://wa.me/554792794147?text=Ol%C3%A1!%20Vi%20o%20portf%C3%B3lio%20da%20b.inside%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto.%20%F0%9F%9A%80',
+      handle:   '+55 (47) 92794-147',
     },
   ],
   stats: [
