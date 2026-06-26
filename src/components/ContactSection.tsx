@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, Mail, AtSign, ArrowUpRight, Check, ExternalLink } from 'lucide-react'
 import { profile } from '@/data/portfolioData'
-import { cn } from '@/lib/utils'
+import { cn, imgUrl } from '@/lib/utils'
 
 // ── Animações ─────────────────────────────────────────────────────────────────
 
@@ -241,7 +241,7 @@ export function ContactSection() {
               Instagram
             </a>
             <a
-              href={`https://linkedin.com/in/ed-kaii`}
+              href="https://linkedin.com/in/ed-kaii"
               target="_blank"
               rel="noopener noreferrer"
               className="text-xs text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-150"
@@ -253,6 +253,88 @@ export function ContactSection() {
               <span className="text-accent" aria-label="amor">♥</span>
             </span>
           </div>
+        </div>
+
+        {/* ── Créditos do desenvolvedor — card fixo ── */}
+        <div className="portfolio-container pb-6">
+          <div className="h-px bg-border/20 mb-5" />
+
+          <motion.div
+            whileHover={{ y: -3 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className={cn(
+              'group flex items-center gap-4 p-4 rounded-2xl cursor-default select-none',
+              // Light: fundo off-white com borda delicada
+              'bg-neutral-50 border border-neutral-200/60',
+              // Dark: preto profundo fosco com borda sutil
+              'dark:bg-[#0c0b0e] dark:border-neutral-800',
+            )}
+          >
+            {/* ── Foto ── */}
+            <div className="flex-shrink-0 w-[68px] h-[68px] rounded-xl overflow-hidden bg-neutral-200 dark:bg-neutral-800">
+              <img
+                src={imgUrl('/images/criador.jpeg')}
+                alt="Lucas Perez"
+                className={cn(
+                  'w-full h-full object-cover object-center',
+                  // Começa em grayscale, ganha cor no hover do card (via group)
+                  'grayscale transition-all duration-500 ease-out',
+                  'group-hover:grayscale-0',
+                )}
+                onError={e => {
+                  const p = e.currentTarget.parentElement
+                  if (p) p.style.background = 'var(--muted)'
+                  e.currentTarget.style.display = 'none'
+                }}
+              />
+            </div>
+
+            {/* ── Conteúdo ── */}
+            <div className="flex-1 min-w-0 flex flex-col gap-[3px]">
+
+              {/* Label acima do nome */}
+              <p className="text-[10px] uppercase tracking-[0.09em] font-medium text-neutral-400 dark:text-neutral-500">
+                Design &amp; Engenharia de Software
+              </p>
+
+              {/* Nome */}
+              <p className="font-semibold text-[0.875rem] leading-tight text-neutral-900 dark:text-white">
+                Lucas Perez
+              </p>
+
+              {/* Título profissional */}
+              <p className="text-[11px] leading-snug text-neutral-500 dark:text-neutral-400">
+                Software Developer · Especialista em Manutenção de Sistemas
+              </p>
+
+              {/* Bio — só aparece em telas >= sm */}
+              <p className="hidden sm:block text-[11px] leading-[1.72] text-neutral-500 dark:text-neutral-400 mt-0.5">
+                Mente técnica por trás da engenharia deste portfólio, transformando
+                designs complexos e visões de negócios em código performático, fluido e pixel-perfect.
+              </p>
+
+              {/* Link GitHub */}
+              <a
+                href="https://github.com/LucasPerezAlves"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  'inline-flex items-center gap-1 mt-1 w-fit',
+                  'text-[11px] font-medium',
+                  'text-neutral-400 dark:text-neutral-500',
+                  'hover:text-neutral-900 dark:hover:text-white',
+                  'transition-colors duration-150 group/gh'
+                )}
+              >
+                <span>Ver no GitHub</span>
+                <ArrowUpRight
+                  size={11}
+                  strokeWidth={2}
+                  className="transition-transform duration-150 group-hover/gh:translate-x-0.5 group-hover/gh:-translate-y-0.5"
+                />
+              </a>
+            </div>
+          </motion.div>
         </div>
       </footer>
 
