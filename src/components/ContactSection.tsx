@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, Mail, AtSign, ArrowUpRight, Check, ExternalLink } from 'lucide-react'
 import { profile } from '@/data/portfolioData'
@@ -21,17 +21,7 @@ const fadeUp = {
 // ── ContactSection ────────────────────────────────────────────────────────────
 
 export function ContactSection() {
-  const [emailCopied,  setEmailCopied]  = useState(false)
-  const [devCardOpen,  setDevCardOpen]  = useState(false)
-  const devCardTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
-
-  const handleDevMouseEnter = () => {
-    clearTimeout(devCardTimer.current)
-    setDevCardOpen(true)
-  }
-  const handleDevMouseLeave = () => {
-    devCardTimer.current = setTimeout(() => setDevCardOpen(false), 180)
-  }
+  const [emailCopied, setEmailCopied] = useState(false)
 
   const whatsappSocial  = profile.socials.find(s => s.platform === 'whatsapp')
   const emailSocial     = profile.socials.find(s => s.platform === 'email')
@@ -265,129 +255,86 @@ export function ContactSection() {
           </div>
         </div>
 
-        {/* ── Créditos do desenvolvedor ── */}
-        <div className="portfolio-container pb-5">
-          <div className="h-px bg-border/20 mb-4" />
+        {/* ── Créditos do desenvolvedor — card fixo ── */}
+        <div className="portfolio-container pb-6">
+          <div className="h-px bg-border/20 mb-5" />
 
-          <div className="flex justify-center">
-            <p className="text-[11px] text-muted-foreground/35 tracking-wide select-none">
-              Design &amp; Engenharia de Software por{' '}
+          <motion.div
+            whileHover={{ y: -3 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className={cn(
+              'group flex items-center gap-4 p-4 rounded-2xl cursor-default select-none',
+              // Light: fundo off-white com borda delicada
+              'bg-neutral-50 border border-neutral-200/60',
+              // Dark: preto profundo fosco com borda sutil
+              'dark:bg-[#0c0b0e] dark:border-neutral-800',
+            )}
+          >
+            {/* ── Foto ── */}
+            <div className="flex-shrink-0 w-[68px] h-[68px] rounded-xl overflow-hidden bg-neutral-200 dark:bg-neutral-800">
+              <img
+                src={imgUrl('/images/criador.jpeg')}
+                alt="Lucas Perez"
+                className={cn(
+                  'w-full h-full object-cover object-center',
+                  // Começa em grayscale, ganha cor no hover do card (via group)
+                  'grayscale transition-all duration-500 ease-out',
+                  'group-hover:grayscale-0',
+                )}
+                onError={e => {
+                  const p = e.currentTarget.parentElement
+                  if (p) p.style.background = 'var(--muted)'
+                  e.currentTarget.style.display = 'none'
+                }}
+              />
+            </div>
 
-              {/* Trigger do hover card */}
-              <span
-                className="relative inline-block"
-                onMouseEnter={handleDevMouseEnter}
-                onMouseLeave={handleDevMouseLeave}
+            {/* ── Conteúdo ── */}
+            <div className="flex-1 min-w-0 flex flex-col gap-[3px]">
+
+              {/* Label acima do nome */}
+              <p className="text-[10px] uppercase tracking-[0.09em] font-medium text-neutral-400 dark:text-neutral-500">
+                Design &amp; Engenharia de Software
+              </p>
+
+              {/* Nome */}
+              <p className="font-semibold text-[0.875rem] leading-tight text-neutral-900 dark:text-white">
+                Lucas Perez
+              </p>
+
+              {/* Título profissional */}
+              <p className="text-[11px] leading-snug text-neutral-500 dark:text-neutral-400">
+                Software Developer · Especialista em Manutenção de Sistemas
+              </p>
+
+              {/* Bio — só aparece em telas >= sm */}
+              <p className="hidden sm:block text-[11px] leading-[1.72] text-neutral-500 dark:text-neutral-400 mt-0.5">
+                Mente técnica por trás da engenharia deste portfólio, transformando
+                designs complexos e visões de negócios em código performático, fluido e pixel-perfect.
+              </p>
+
+              {/* Link GitHub */}
+              <a
+                href="https://github.com/LucasPerezAlves"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cn(
+                  'inline-flex items-center gap-1 mt-1 w-fit',
+                  'text-[11px] font-medium',
+                  'text-neutral-400 dark:text-neutral-500',
+                  'hover:text-neutral-900 dark:hover:text-white',
+                  'transition-colors duration-150 group/gh'
+                )}
               >
-                <button
-                  onClick={() => setDevCardOpen(v => !v)}
-                  className={cn(
-                    'text-muted-foreground/55 transition-colors duration-200',
-                    'hover:text-muted-foreground/85',
-                    'underline underline-offset-2 decoration-muted-foreground/20',
-                    'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring rounded-sm'
-                  )}
-                  aria-label="Ver perfil do desenvolvedor Lucas Perez"
-                  aria-expanded={devCardOpen}
-                >
-                  Lucas Perez
-                </button>
-
-                {/* ── Developer Card ── */}
-                <AnimatePresence>
-                  {devCardOpen && (
-                    <motion.div
-                      role="tooltip"
-                      aria-label="Perfil de Lucas Perez"
-                      onMouseEnter={handleDevMouseEnter}
-                      onMouseLeave={handleDevMouseLeave}
-                      initial={{ opacity: 0, scale: 0.96, y: 10 }}
-                      animate={{ opacity: 1, scale: 1,    y: 0  }}
-                      exit={{    opacity: 0, scale: 0.96, y: 8  }}
-                      transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-                      className={cn(
-                        // Posicionamento: flutua acima do trigger
-                        'absolute bottom-full left-1/2 -translate-x-1/2 mb-4 z-50',
-                        'w-[296px]',
-                        // Forma
-                        'rounded-2xl overflow-visible',
-                        // Light
-                        'bg-background border border-border',
-                        'shadow-[0_8px_32px_rgba(0,0,0,0.09),0_2px_8px_rgba(0,0,0,0.05)]',
-                        // Dark
-                        'dark:bg-[#0c0b0e]',
-                        'dark:shadow-[0_8px_48px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.07)]',
-                      )}
-                    >
-                      {/* Foto — grayscale → cor */}
-                      <div className="relative h-28 overflow-hidden rounded-t-2xl bg-muted/50">
-                        <motion.img
-                          src={imgUrl('/images/criador.jpeg')}
-                          alt="Lucas Perez — Software Developer"
-                          className="w-full h-full object-cover object-top"
-                          initial={{ filter: 'grayscale(100%)' }}
-                          animate={{ filter: 'grayscale(0%)'  }}
-                          transition={{ delay: 0.12, duration: 0.55, ease: 'easeOut' }}
-                          onError={e => {
-                            // Placeholder elegante se a imagem ainda não existir
-                            const el = e.currentTarget
-                            el.style.display = 'none'
-                          }}
-                        />
-                        {/* Gradiente de profundidade na base da foto */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-background/70 dark:from-[#0c0b0e]/90 to-transparent pointer-events-none" />
-                      </div>
-
-                      {/* Conteúdo */}
-                      <div className="px-5 pt-3.5 pb-4 flex flex-col gap-2.5">
-                        <div>
-                          <p className="font-semibold text-[0.875rem] text-foreground leading-snug">
-                            Lucas Perez
-                          </p>
-                          <p className="text-[11px] text-muted-foreground/60 mt-0.5 leading-snug">
-                            Software Developer · Manutenção de Sistemas
-                          </p>
-                        </div>
-
-                        <p className="text-[11.5px] text-muted-foreground/70 leading-[1.72]">
-                          Mente técnica por trás da engenharia deste portfólio,
-                          transformando designs complexos e visões de negócios em
-                          código performático, fluido e pixel-perfect.
-                        </p>
-
-                        <a
-                          href="https://github.com/LucasPerezAlves"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={cn(
-                            'inline-flex items-center gap-1.5 w-fit',
-                            'text-[11px] font-medium',
-                            'text-muted-foreground/55 hover:text-foreground',
-                            'transition-colors duration-150 group/gh'
-                          )}
-                        >
-                          <span>Ver no GitHub</span>
-                          <ArrowUpRight
-                            size={11}
-                            strokeWidth={2}
-                            className="transition-transform duration-150 group-hover/gh:translate-x-0.5 group-hover/gh:-translate-y-0.5"
-                          />
-                        </a>
-                      </div>
-
-                      {/* Triângulo apontando para o nome (seta tooltip) */}
-                      <div className={cn(
-                        'absolute -bottom-[5px] left-1/2 -translate-x-1/2',
-                        'w-[10px] h-[10px] rotate-45',
-                        'bg-background border-r border-b border-border',
-                        'dark:bg-[#0c0b0e] dark:border-border',
-                      )} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </span>
-            </p>
-          </div>
+                <span>Ver no GitHub</span>
+                <ArrowUpRight
+                  size={11}
+                  strokeWidth={2}
+                  className="transition-transform duration-150 group-hover/gh:translate-x-0.5 group-hover/gh:-translate-y-0.5"
+                />
+              </a>
+            </div>
+          </motion.div>
         </div>
       </footer>
 
