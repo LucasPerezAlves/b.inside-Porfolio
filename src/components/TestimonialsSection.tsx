@@ -1,21 +1,9 @@
 import { motion } from 'framer-motion'
 import { CircularTestimonials } from '@/components/ui/circular-testimonials'
 import { circularTestimonials } from '@/data/portfolioData'
-import { useTheme } from '@/hooks/useTheme'
 import { cn } from '@/lib/utils'
 
 const EASE = [0.22, 1, 0.36, 1] as const
-
-// ── Paletas por tema ──────────────────────────────────────────────────────────
-
-const LIGHT_COLORS = {
-  name:                '#0a0a0a',
-  designation:         '#525252',
-  testimony:           '#171717',
-  arrowBackground:     '#171717',
-  arrowForeground:     '#f5f5f5',
-  arrowHoverBackground:'#404040',
-}
 
 const DARK_COLORS = {
   name:                '#f5f5f5',
@@ -26,21 +14,12 @@ const DARK_COLORS = {
   arrowHoverBackground:'#f5f5f5',
 }
 
-// ── TestimonialsSection ───────────────────────────────────────────────────────
-
 export function TestimonialsSection() {
-  const { theme } = useTheme()
-
-  const colors = theme === 'dark' ? DARK_COLORS : LIGHT_COLORS
-
-  // Dark mode usa fundo ligeiramente diferente do --background para separação visual
-  const sectionBg = theme === 'dark' ? '#080808' : 'var(--background)'
-
   return (
     <section
       id="depoimentos"
       className="relative"
-      style={{ backgroundColor: sectionBg }}
+      style={{ backgroundColor: '#080808' }}
     >
 
       {/* Divisor de seção */}
@@ -48,15 +27,9 @@ export function TestimonialsSection() {
         <div className="h-px divider-fade" />
       </div>
 
-      {/* Decoração ambiente — espelha o tom da seção hero */}
+      {/* Decoração ambiente — brilho sutil no canto inferior direito */}
       <div aria-hidden className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
-        {theme === 'light' ? (
-          // Light: gradiente rosado suave no canto superior esquerdo
-          <div className="absolute -top-24 -left-24 w-[35vw] h-[35vw] max-w-lg max-h-lg rounded-full blur-[120px] opacity-[0.07] bg-accent" />
-        ) : (
-          // Dark: brilho dourado sutil no canto inferior direito
-          <div className="absolute -bottom-24 -right-24 w-[40vw] h-[40vw] max-w-xl max-h-xl rounded-full blur-[140px] opacity-[0.04] bg-accent" />
-        )}
+        <div className="absolute -bottom-24 -right-24 w-[40vw] h-[40vw] max-w-xl max-h-xl rounded-full blur-[140px] opacity-[0.04] bg-accent" />
       </div>
 
       <div className="portfolio-container py-24 lg:py-32">
@@ -92,7 +65,7 @@ export function TestimonialsSection() {
           <CircularTestimonials
             testimonials={circularTestimonials}
             autoplay
-            colors={colors}
+            colors={DARK_COLORS}
           />
         </motion.div>
 
