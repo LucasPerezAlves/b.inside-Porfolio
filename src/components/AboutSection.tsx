@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { MapPin, ArrowDownRight } from 'lucide-react'
 import { profile } from '@/data/portfolioData'
 import { cn, imgUrl } from '@/lib/utils'
+import { RevealLine, RevealWords } from '@/components/ui/reveal-text'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -11,8 +12,8 @@ const stagger = {
 }
 
 const fadeUp = {
-  hidden:  { opacity: 0, y: 22 },
-  visible: { opacity: 1, y: 0,  transition: { duration: 0.65, ease: EASE } },
+  hidden:  { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0,  transition: { type: 'spring' as const, stiffness: 55, damping: 22 } },
 }
 
 export function AboutSection() {
@@ -42,14 +43,10 @@ export function AboutSection() {
               'bg-muted photo-shadow',
             )}>
               <img
-                src={imgUrl('/images/kailany-perfil.jpg')}
+                src={imgUrl('/images/testimonials/imagem kaii.jpg')}
                 alt="Kailany Ribeiro — fundadora da b.inside"
                 loading="lazy"
-                className="w-full h-full object-cover object-top"
-                onError={e => {
-                  e.currentTarget.src = imgUrl(profile.avatar)
-                  e.currentTarget.onerror = null
-                }}
+                className="w-full h-full object-cover object-center"
               />
               <div className="absolute bottom-0 inset-x-0 h-2/5 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
 
@@ -91,18 +88,17 @@ export function AboutSection() {
               — Kailany Ribeiro
             </motion.span>
 
-            <motion.h2
-              variants={fadeUp}
-              className={cn(
-                'font-serif font-light tracking-editorial leading-[1.05]',
-                'text-display-md',
-                'text-foreground mt-3 mb-0',
-              )}
-            >
-              Por trás
-              <br />
-              do <em className="italic text-accent">olhar</em>
-            </motion.h2>
+            {/* h2 com reveal por linha — independente do stagger do pai */}
+            <h2 className={cn(
+              'font-serif font-light tracking-editorial leading-[1.05]',
+              'text-display-md',
+              'text-foreground mt-3 mb-0',
+            )}>
+              <RevealLine delay={0.08}>Por trás</RevealLine>
+              <RevealLine delay={0.18}>
+                do <em className="italic text-accent">olhar</em>
+              </RevealLine>
+            </h2>
 
             <motion.div variants={fadeUp} className="mt-5 mb-8">
               <span className={cn(
@@ -127,11 +123,11 @@ export function AboutSection() {
                 variants={fadeUp}
                 className="text-[0.95rem] text-muted-foreground leading-[1.78]"
               >
-                Após{' '}
-                <span className="text-foreground font-medium">5 anos e mais de 40 projetos entregues</span>,
-                fundei a b.inside com uma crença clara: conteúdo premium não é sobre
-                volume — é sobre a diferença entre uma marca que posta e uma marca que
-                é <em className="text-accent not-italic font-medium">lembrada</em>.
+                <RevealWords
+                  text="Após 3 anos e mais de 20 projetos entregues, fundei a b.inside com uma crença clara: conteúdo premium não é sobre volume — é sobre a diferença entre uma marca que posta e uma marca que é lembrada."
+                  delay={0.05}
+                  stagger={0.025}
+                />
               </motion.p>
               <motion.p
                 variants={fadeUp}
@@ -143,33 +139,6 @@ export function AboutSection() {
                 e a torno irresistível.
               </motion.p>
             </div>
-
-            {/* Grid 2×2 de estatísticas */}
-            <motion.div
-              variants={fadeUp}
-              className="grid grid-cols-2 gap-3 mt-10"
-            >
-              {profile.stats.map(stat => (
-                <div
-                  key={stat.label}
-                  className={cn(
-                    'flex flex-col gap-1 p-4 rounded-xl',
-                    'border border-border/60',
-                    'bg-muted/30 dark:bg-muted/20',
-                  )}
-                >
-                  <span className={cn(
-                    'font-serif font-light tracking-editorial leading-none',
-                    'text-[2rem] text-accent',
-                  )}>
-                    {stat.value}
-                  </span>
-                  <span className="text-[11px] text-muted-foreground leading-tight mt-0.5">
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </motion.div>
 
             {/* CTA suave para a seção de contato */}
             <motion.div variants={fadeUp} className="mt-9">

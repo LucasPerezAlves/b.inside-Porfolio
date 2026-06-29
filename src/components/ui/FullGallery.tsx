@@ -77,6 +77,7 @@ function Lightbox({ item, onClose }: { item: GalleryMedia; onClose: () => void }
             controls
             playsInline
             autoPlay
+            preload="auto"
             className="rounded-2xl block shadow-[0_32px_80px_rgba(0,0,0,0.65)]"
             style={{ maxHeight: '85vh', maxWidth: '90vw' }}
             onError={e => (e.currentTarget.style.display = 'none')}
@@ -131,6 +132,20 @@ function GridCard({ item, index, onClick }: {
 }) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
+  // Lazy-load do thumbnail de vídeo: só carrega metadados quando o card
+  // entra no viewport (evita baixar arquivos .MOV pesados desnecessariamente)
+  useEffect(() => {
+    if (item.type !== 'video') return
+    const el = videoRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) el.load() },
+      { threshold: 0.1, rootMargin: '120px' },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [item.type])
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16, scale: 0.97 }}
@@ -155,7 +170,7 @@ function GridCard({ item, index, onClick }: {
         <video
           ref={videoRef}
           src={imgUrl(item.src)}
-          muted playsInline preload="metadata"
+          muted playsInline preload="none"
           className="w-full h-full object-cover object-center pointer-events-none"
           onError={() => { if (videoRef.current) videoRef.current.style.display = 'none' }}
         />
@@ -235,17 +250,26 @@ export function FullGallery({ onClose }: { onClose: () => void }) {
         {visible && (
           <motion.div
             key="full-gallery"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.28, ease: EASE }}
+            initial={{ opacity: 0, filter: 'blur(14px)' }}
+            animate={{ opacity: 1, filter: 'blur(0px)'  }}
+            exit={{ opacity: 0,    filter: 'blur(14px)' }}
+            transition={{ duration: 0.38, ease: EASE }}
             className={cn(
               'fixed inset-0 z-50 flex flex-col',
-              // Paleta b.inside: branco puro (light) · preto profundo (dark)
               'bg-white dark:bg-[#0c0b0e]',
-              'backdrop-blur-md',
             )}
           >
+            {/* Glow cinematográfico — radial burst que some após a abertura */}
+            <motion.div
+              aria-hidden
+              className="absolute inset-0 pointer-events-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1, 0] }}
+              transition={{ duration: 0.75, times: [0, 0.22, 1], ease: 'easeOut' }}
+              style={{
+                background: 'radial-gradient(ellipse at 50% 30%, rgba(255,255,255,0.07) 0%, transparent 62%)',
+              }}
+            />
             {/* ── Barra superior ── */}
             <div className={cn(
               'flex items-center justify-between gap-4 flex-shrink-0',

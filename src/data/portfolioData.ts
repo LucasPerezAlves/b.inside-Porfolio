@@ -64,7 +64,7 @@ export const profile: Profile = {
   bio:      'Por trás da b.inside está Kailany, especialista em capturar a essência de negócios e transformá-la em conteúdo premium que conecta, engaja e vende.',
   location:     'Santa Catarina, Brasil',
   availability: 'Disponível para novos projetos',
-  avatar:       '/images/testimonials/imagem kaii.jpg',
+  avatar:       '/images/imagensReais/FotoProfissional.jpeg',
   socials: [
     {
       platform: 'linkedin',
@@ -92,9 +92,9 @@ export const profile: Profile = {
     },
   ],
   stats: [
-    { label: 'Anos de experiência',       value: '5+' },
-    { label: 'Projetos entregues',         value: '40+' },
-    { label: 'Em tráfego gerenciado',      value: 'R$ 500k+' },
+    { label: 'Anos de experiência',       value: '3+' },
+    { label: 'Projetos entregues',         value: '20+' },
+    { label: 'Em tráfego gerenciado',      value: 'R$ 100k+' },
     { label: 'Crescimento médio de leads', value: '3×' },
   ],
 }

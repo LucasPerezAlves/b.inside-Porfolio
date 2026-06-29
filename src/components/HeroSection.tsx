@@ -17,11 +17,11 @@ const stagger = {
 }
 
 const fadeUp = {
-  hidden:  { opacity: 0, y: 28 },
+  hidden:  { opacity: 0, y: 32 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: EASE },
+    transition: { type: 'spring' as const, stiffness: 55, damping: 22 },
   },
 }
 
@@ -327,7 +327,7 @@ export function HeroSection() {
               <img
                 src={imgUrl(profile.avatar)}
                 alt={`Foto profissional de ${profile.fullName}`}
-                className="absolute inset-0 w-full h-full object-cover object-top"
+                className="absolute inset-0 w-full h-full object-cover object-[center_80%]"
                 loading="eager"
                 onError={e => (e.currentTarget.style.display = 'none')}
               />
@@ -356,7 +356,7 @@ export function HeroSection() {
               <span className="text-xl">✨</span>
               <div className="flex flex-col gap-px">
                 <span className="text-xs font-medium text-foreground leading-tight">
-                  5+ anos de experiência
+                  3+ anos de experiência
                 </span>
                 <span className="text-[11px] text-muted-foreground">
                   em Conteúdo &amp; Visual
@@ -379,7 +379,7 @@ export function HeroSection() {
             >
               <span className="text-lg leading-none">🚀</span>
               <div className="flex flex-col gap-px">
-                <span className="text-[11px] font-bold leading-tight">R$ 500k+</span>
+                <span className="text-[11px] font-bold leading-tight">R$ 100k+</span>
                 <span className="text-[10px] opacity-80">em tráfego gerenciado</span>
               </div>
             </motion.div>

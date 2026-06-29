@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from 'react'
+import { useState, useEffect, useRef, lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { Play, ArrowUpRight } from 'lucide-react'
 import { cn, imgUrl } from '@/lib/utils'
@@ -51,7 +51,29 @@ function useIsMobile(): boolean {
 function ScatterCard({ item, index, isMobile }: {
   item: GalleryMedia; index: number; isMobile: boolean
 }) {
-  const pos = (isMobile ? MOBILE_POS : DESKTOP_POS)[index] ?? DESKTOP_POS[0]
+  const pos      = (isMobile ? MOBILE_POS : DESKTOP_POS)[index] ?? DESKTOP_POS[0]
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  // Inicia loading/play do vídeo somente quando o card entra no viewport.
+  // preload="none" garante que nenhum byte é baixado antes disso.
+  useEffect(() => {
+    if (item.type !== 'video') return
+    const el = videoRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.load()
+          el.play().catch(() => {})
+        } else {
+          el.pause()
+        }
+      },
+      { threshold: 0.25 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [item.type])
 
   return (
     <motion.div
@@ -81,8 +103,9 @@ function ScatterCard({ item, index, isMobile }: {
     >
       {item.type === 'video' ? (
         <video
+          ref={videoRef}
           src={imgUrl(item.src)}
-          autoPlay loop muted playsInline preload="metadata"
+          loop muted playsInline preload="none"
           className="w-full h-full object-cover pointer-events-none"
           onError={e => (e.currentTarget.style.display = 'none')}
         />
