@@ -2,7 +2,8 @@ import './App.css'
 import { ThemeProvider }        from '@/components/ThemeProvider'
 import { Header }               from '@/components/Header'
 import { HeroSection }          from '@/components/HeroSection'
-import { SelectedWork }         from '@/components/SelectedWork'
+import { AboutSection }         from '@/components/AboutSection'
+import { PhotoGallery }         from '@/components/ui/gallery'
 import { ServicesSection }      from '@/components/ServicesSection'
 import { TestimonialsSection }  from '@/components/TestimonialsSection'
 import { ContactSection }       from '@/components/ContactSection'
@@ -13,7 +14,8 @@ export default function App() {
       <div className="bg-background text-foreground">
         <Header />
         <HeroSection />
-        <SelectedWork />
+        <AboutSection />
+        <PhotoGallery />
         <ServicesSection />
         <TestimonialsSection />
         <ContactSection />

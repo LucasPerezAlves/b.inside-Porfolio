@@ -66,7 +66,7 @@ export function HeroSection() {
         <div
           className="absolute inset-0 dark:hidden"
           style={{
-            backgroundImage: 'radial-gradient(circle, rgba(212,88,126,0.07) 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px)',
             backgroundSize: '32px 32px',
           }}
         />
@@ -173,8 +173,8 @@ export function HeroSection() {
                   'px-6 py-3 rounded-xl',
                   'bg-accent text-accent-foreground',
                   'text-sm font-medium',
-                  'shadow-[0_4px_20px_rgba(212,88,126,0.3)] dark:shadow-[0_4px_20px_rgba(201,169,110,0.2)]',
-                  'hover:opacity-88 hover:shadow-[0_6px_28px_rgba(212,88,126,0.4)] dark:hover:shadow-[0_6px_28px_rgba(201,169,110,0.3)]',
+                  'shadow-[0_4px_20px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.40)]',
+                  'hover:opacity-90 hover:shadow-[0_6px_28px_rgba(0,0,0,0.20)] dark:hover:shadow-[0_6px_28px_rgba(0,0,0,0.50)]',
                   'active:scale-[0.98]',
                   'transition-all duration-200',
                   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
@@ -374,7 +374,7 @@ export function HeroSection() {
                 'flex items-center gap-2',
                 'px-3 py-2 rounded-xl',
                 'bg-accent text-accent-foreground',
-                'shadow-[0_4px_16px_rgba(212,88,126,0.3)] dark:shadow-[0_4px_16px_rgba(201,169,110,0.2)]',
+                'shadow-[0_4px_16px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_16px_rgba(0,0,0,0.40)]',
               )}
             >
               <span className="text-lg leading-none">🚀</span>

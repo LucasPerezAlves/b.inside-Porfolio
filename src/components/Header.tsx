@@ -6,7 +6,8 @@ import { profile } from '@/data/portfolioData'
 import { cn } from '@/lib/utils'
 
 const NAV_LINKS = [
-  { label: 'Trabalhos', href: '#trabalhos' },
+  { label: 'Sobre',     href: '#sobre'     },
+  { label: 'Projetos',  href: '#galeria'   },
   { label: 'Serviços',  href: '#servicos'  },
   { label: 'Contato',   href: '#contato'   },
 ]
