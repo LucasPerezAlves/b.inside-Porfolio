@@ -28,7 +28,7 @@ export function ContactSection() {
   const instagramSocial = profile.socials.find(s => s.platform === 'instagram')
 
   const whatsappUrl     = whatsappSocial?.url    ?? '#'
-  const email           = emailSocial?.handle    ?? 'contato@edkaii.com.br'
+  const email           = emailSocial?.handle    ?? 'ed.kailany@gmail.com'
   const instagramUrl    = instagramSocial?.url   ?? '#'
   const instagramHandle = instagramSocial?.handle ?? '@b.insidee'
 
@@ -51,7 +51,7 @@ export function ContactSection() {
         <div
           className="absolute inset-0 dark:hidden"
           style={{
-            backgroundImage: 'radial-gradient(circle, rgba(212,88,126,0.05) 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1px)',
             backgroundSize: '32px 32px',
           }}
         />

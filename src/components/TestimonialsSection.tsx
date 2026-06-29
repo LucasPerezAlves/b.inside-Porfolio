@@ -10,20 +10,20 @@ const EASE = [0.22, 1, 0.36, 1] as const
 
 const LIGHT_COLORS = {
   name:                '#0a0a0a',
-  designation:         '#454545',
+  designation:         '#525252',
   testimony:           '#171717',
-  arrowBackground:     '#141414',
-  arrowForeground:     '#f1f1f7',
-  arrowHoverBackground:'#D4587E',   // rose-magenta do tema Bem Menina
+  arrowBackground:     '#171717',
+  arrowForeground:     '#f5f5f5',
+  arrowHoverBackground:'#404040',
 }
 
 const DARK_COLORS = {
-  name:                '#f7f7ff',
-  designation:         '#e1e1e1',
-  testimony:           '#f1f1f7',
-  arrowBackground:     '#C9A96E',   // champanhe dourado do tema Premium
-  arrowForeground:     '#141414',
-  arrowHoverBackground:'#f7f7ff',
+  name:                '#f5f5f5',
+  designation:         '#d4d4d4',
+  testimony:           '#f0f0f0',
+  arrowBackground:     '#d4d4d4',
+  arrowForeground:     '#0a0a0a',
+  arrowHoverBackground:'#f5f5f5',
 }
 
 // ── TestimonialsSection ───────────────────────────────────────────────────────
@@ -33,9 +33,8 @@ export function TestimonialsSection() {
 
   const colors = theme === 'dark' ? DARK_COLORS : LIGHT_COLORS
 
-  // Dark mode usa fundo ligeiramente mais profundo que --background (#09090B)
-  // para criar separação visual com as seções vizinhas
-  const sectionBg = theme === 'dark' ? '#060507' : 'var(--background)'
+  // Dark mode usa fundo ligeiramente diferente do --background para separação visual
+  const sectionBg = theme === 'dark' ? '#080808' : 'var(--background)'
 
   return (
     <section

@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaQuoteRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
-import { imgUrl } from '@/lib/utils'
+import { cn, imgUrl } from '@/lib/utils'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -60,11 +60,11 @@ function getStackPos(offset: number, gap: number): StackPos {
 
 const DEFAULTS: Required<CircularTestimonialsColors> = {
   name:                '#0a0a0a',
-  designation:         '#454545',
+  designation:         '#525252',
   testimony:           '#171717',
-  arrowBackground:     '#141414',
-  arrowForeground:     '#f1f1f7',
-  arrowHoverBackground:'#D4587E',
+  arrowBackground:     '#171717',
+  arrowForeground:     '#f5f5f5',
+  arrowHoverBackground:'#404040',
 }
 
 // ── Component ─────────────────────────────────────────────────────────────────
@@ -76,6 +76,7 @@ export function CircularTestimonials({
 }: CircularTestimonialsProps) {
   const [active,  setActive]  = useState(0)
   const [hovered, setHovered] = useState<'prev' | 'next' | null>(null)
+  const [paused,  setPaused]  = useState(false)
   const [gap,     setGap]     = useState(18)
   const containerRef          = useRef<HTMLDivElement>(null)
 
@@ -95,12 +96,12 @@ export function CircularTestimonials({
     return () => ro.disconnect()
   }, [])
 
-  // Autoplay — 5 s
+  // Autoplay — 9 s; pausa quando o cursor/toque está sobre o componente
   useEffect(() => {
-    if (!autoplay) return
-    const id = setInterval(goNext, 5000)
+    if (!autoplay || paused) return
+    const id = setInterval(goNext, 9000)
     return () => clearInterval(id)
-  }, [autoplay, goNext])
+  }, [autoplay, paused, goNext])
 
   // Keyboard navigation
   useEffect(() => {
@@ -118,12 +119,18 @@ export function CircularTestimonials({
   ]
 
   return (
-    <div ref={containerRef} className="w-full">
-      <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 xl:gap-24">
+    <div
+      ref={containerRef}
+      className="w-full"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* gap reduzido no mobile para não desperdiçar espaço vertical */}
+      <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 xl:gap-24">
 
         {/* ── STACKED PHOTO CARDS ────────────────────────────────────────────── */}
         <div
-          className="relative flex-shrink-0 w-[260px] h-[340px] sm:w-[300px] sm:h-[390px] lg:w-[320px] lg:h-[420px]"
+          className="relative flex-shrink-0 w-[240px] h-[310px] sm:w-[280px] sm:h-[360px] lg:w-[320px] lg:h-[420px]"
           aria-hidden
         >
           {testimonials.map((t, i) => {
@@ -148,8 +155,6 @@ export function CircularTestimonials({
                   transformOrigin: '50% 100%',
                   borderRadius:    16,
                   overflow:        'hidden',
-                  // Light: soft shadow with card lift feel
-                  // Dark: deeper shadow with glow handled by section bg
                   boxShadow: '0 24px 60px rgba(0,0,0,0.20), 0 2px 8px rgba(0,0,0,0.10)',
                 }}
               >
@@ -165,11 +170,8 @@ export function CircularTestimonials({
                     userSelect: 'none',
                     display:    'block',
                   }}
-                  onError={e => {
-                    e.currentTarget.style.display = 'none'
-                  }}
+                  onError={e => { e.currentTarget.style.display = 'none' }}
                 />
-                {/* Cinema gradient at bottom for depth */}
                 <div
                   style={{
                     position: 'absolute', left: 0, right: 0, bottom: 0,
@@ -184,19 +186,40 @@ export function CircularTestimonials({
         </div>
 
         {/* ── TESTIMONIAL TEXT ───────────────────────────────────────────────── */}
-        <div className="flex-1 flex flex-col gap-5 max-w-xl">
+        {/*
+          min-h-0 é obrigatório em flex-children para permitir shrink abaixo
+          do content-size — sem isso o flex-item transborda o pai no mobile.
+        */}
+        <div className="flex-1 min-h-0 flex flex-col gap-4 max-w-xl w-full">
 
           {/* Quote mark */}
           <FaQuoteRight
-            size={32}
-            style={{ color: c.arrowBackground, opacity: 0.12 }}
+            size={26}
+            style={{ color: c.arrowBackground, opacity: 0.12, flexShrink: 0 }}
             aria-hidden
           />
 
-          {/* Animated quote — word-by-word blur entry */}
+          {/*
+            CORREÇÃO DO BUG:
+            Antes: motion.p era position:absolute;inset:0 → ficava fora do fluxo,
+            o pai mantinha apenas minHeight e o texto transbordava sobre o bloco
+            de autor + botões abaixo.
+
+            Agora: motion.p é position:relative (participa do fluxo normal).
+            AnimatePresence mode="wait" garante que só existe 1 elemento por vez,
+            então não há sobreposição durante a transição.
+            O wrapper tem max-h controlado por breakpoint + overflow-y-auto com
+            scrollbar oculto — texto longo fica contido sem estourar o layout.
+          */}
           <div
-            className="relative"
-            style={{ minHeight: 'clamp(9rem, 18vw, 11.5rem)' }}
+            className={cn(
+              'overflow-y-auto',
+              '[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]',
+              // Mobile: limita altura para caber em qualquer smartphone
+              // Tablet: um pouco mais de espaço
+              // Desktop: sem restrição (layout horizontal, não quebra nada)
+              'max-h-[152px] md:max-h-[196px] lg:max-h-none',
+            )}
           >
             <AnimatePresence mode="wait">
               <motion.p
@@ -208,11 +231,12 @@ export function CircularTestimonials({
                   transition: { duration: 0.18, ease: 'easeIn' },
                 }}
                 style={{
-                  position:   'absolute',
-                  inset:      0,
+                  // position:relative (padrão) — participa do fluxo normal
                   margin:     0,
-                  fontSize:   'clamp(0.88rem, 2vw, 1.02rem)',
-                  lineHeight: 1.8,
+                  padding:    0,
+                  // fonte ligeiramente menor no mobile via clamp
+                  fontSize:   'clamp(0.80rem, 1.9vw, 1.02rem)',
+                  lineHeight: 1.78,
                   fontWeight: 300,
                   color:      c.testimony,
                 }}
@@ -236,7 +260,8 @@ export function CircularTestimonials({
             </AnimatePresence>
           </div>
 
-          {/* Author name + designation + navigation ───────────────────────── */}
+          {/* Author name + designation + navigation — flex-shrink:0 impede que
+              o bloco seja empurrado para fora da área visível pelo texto acima */}
           <div
             style={{
               display:        'flex',
@@ -244,6 +269,7 @@ export function CircularTestimonials({
               justifyContent: 'space-between',
               gap:            '1rem',
               paddingTop:     '0.25rem',
+              flexShrink:     0,
             }}
           >
             {/* Animated author */}
@@ -295,8 +321,8 @@ export function CircularTestimonials({
             </div>
           </div>
 
-          {/* Progress indicators */}
-          <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+          {/* Progress indicators — flex-shrink:0 garante que sempre apareça */}
+          <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexShrink: 0 }}>
             {testimonials.map((_, i) => (
               <button
                 key={i}

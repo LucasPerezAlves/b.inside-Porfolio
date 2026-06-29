@@ -47,32 +47,29 @@
     --font-serif: 'Cormorant Garamond', 'Cormorant', Georgia, serif;
     --font-mono:  ui-monospace, 'JetBrains Mono', Consolas, monospace;
 
-    /* ── LIGHT MODE: "White Colorido / Bem Menina" ──
-       Blush off-white + rose-magenta vibrante + bordas rosadas
-    ─────────────────────────────────────────────── */
-    --background:       #FDF9FB;
-    --foreground:       #1A1118;
+    /* ── LIGHT MODE: b.inside — Branco, Preto e Cinza ── */
+    --background:       #ffffff;
+    --foreground:       #0a0a0a;
 
-    --card:             #FFFFFF;
-    --card-foreground:  #1A1118;
+    --card:             #ffffff;
+    --card-foreground:  #0a0a0a;
 
-    --muted:            #F5EFF2;
-    --muted-foreground: #8B7280;
+    --muted:            #f5f5f5;
+    --muted-foreground: #737373;
 
-    --border:           #EBE0E6;
-    --input:            #EBE0E6;
-    --ring:             #D4587E;
+    --border:           #e5e5e5;
+    --input:            #e5e5e5;
+    --ring:             #0a0a0a;
 
-    /* Rose-magenta — viva e sofisticada, não neon */
-    --accent:           #D4587E;
-    --accent-subtle:    #FCEAF1;
-    --accent-foreground:#FFFFFF;
+    --accent:           #171717;
+    --accent-subtle:    #f5f5f5;
+    --accent-foreground:#ffffff;
 
-    --primary:          #1A1118;
-    --primary-foreground:#FDF9FB;
+    --primary:          #0a0a0a;
+    --primary-foreground:#ffffff;
 
-    --secondary:        #F5EFF2;
-    --secondary-foreground: #1A1118;
+    --secondary:        #f5f5f5;
+    --secondary-foreground: #0a0a0a;
 
     --destructive:      #DC2626;
 
@@ -84,59 +81,56 @@
     --radius-2xl: 20px;
     --radius-3xl: 28px;
 
-    /* Sombra colorida para o modo menina (usada no foto card) */
+    /* Sombra neutra — modo claro */
     --photo-shadow:
-      0 24px 64px -8px rgba(212, 88, 126, 0.2),
-      0 4px 20px -4px rgba(212, 88, 126, 0.12);
-    --photo-ring: rgba(212, 88, 126, 0.25);
+      0 24px 64px -8px rgba(0, 0, 0, 0.10),
+      0 4px 20px -4px rgba(0, 0, 0, 0.06);
+    --photo-ring: rgba(0, 0, 0, 0.12);
 
-    /* Gradientes de categoria — light */
-    --card-gradient-branding: linear-gradient(145deg, #FDE4EE 0%, #F7CCDF 60%, #F0C0D5 100%);
-    --card-gradient-traffic:  linear-gradient(145deg, #EAE3FF 0%, #D8CCFF 60%, #CABEFF 100%);
-    --card-gradient-content:  linear-gradient(145deg, #D4F5EA 0%, #C0EED9 60%, #AAEACB 100%);
-    --card-gradient-launch:   linear-gradient(145deg, #FEF3CF 0%, #FDE9B2 60%, #FCE098 100%);
+    /* Gradientes de categoria — light (escala de cinza neutro) */
+    --card-gradient-branding: linear-gradient(145deg, #fafafa 0%, #f2f2f2 60%, #ebebeb 100%);
+    --card-gradient-traffic:  linear-gradient(145deg, #f7f7f7 0%, #efefef 60%, #e8e8e8 100%);
+    --card-gradient-content:  linear-gradient(145deg, #f9f9f9 0%, #f3f3f3 60%, #ededed 100%);
+    --card-gradient-launch:   linear-gradient(145deg, #f4f4f4 0%, #ececec 60%, #e4e4e4 100%);
   }
 
-  /* ── DARK MODE: "Black Premium" ──
-     Preto puro + champanhe dourado + autoridade executiva
-  ────────────────────────────────── */
+  /* ── DARK MODE: b.inside — Preto Cinematográfico ── */
   .dark {
-    --background:       #09090B;
-    --foreground:       #FAFAFA;
+    --background:       #0a0a0a;
+    --foreground:       #f5f5f5;
 
-    --card:             #111113;
-    --card-foreground:  #FAFAFA;
+    --card:             #141414;
+    --card-foreground:  #f5f5f5;
 
-    --muted:            #18181B;
-    --muted-foreground: #71717A;
+    --muted:            #1f1f1f;
+    --muted-foreground: #a3a3a3;
 
-    --border:           #27272A;
-    --input:            #27272A;
-    --ring:             #C9A96E;
+    --border:           #2a2a2a;
+    --input:            #2a2a2a;
+    --ring:             #d4d4d4;
 
-    /* Champanhe dourado — luxo silencioso */
-    --accent:           #C9A96E;
-    --accent-subtle:    #1C1812;
-    --accent-foreground:#09090B;
+    --accent:           #ffffff;
+    --accent-subtle:    #1a1a1a;
+    --accent-foreground:#0a0a0a;
 
-    --primary:          #FAFAFA;
-    --primary-foreground:#09090B;
+    --primary:          #f5f5f5;
+    --primary-foreground:#0a0a0a;
 
-    --secondary:        #27272A;
-    --secondary-foreground: #FAFAFA;
+    --secondary:        #262626;
+    --secondary-foreground: #f5f5f5;
 
     --destructive:      #EF4444;
 
     --photo-shadow:
-      0 24px 64px -8px rgba(201, 169, 110, 0.1),
-      0 0 0 1px rgba(201, 169, 110, 0.12);
-    --photo-ring: rgba(201, 169, 110, 0.2);
+      0 24px 64px -8px rgba(0, 0, 0, 0.50),
+      0 0 0 1px rgba(255, 255, 255, 0.04);
+    --photo-ring: rgba(255, 255, 255, 0.08);
 
-    /* Gradientes de categoria — dark */
-    --card-gradient-branding: linear-gradient(145deg, #2A151E 0%, #3A1B28 60%, #1F1018 100%);
-    --card-gradient-traffic:  linear-gradient(145deg, #181830 0%, #1E1A38 60%, #13102C 100%);
-    --card-gradient-content:  linear-gradient(145deg, #0D2018 0%, #122A22 60%, #08180F 100%);
-    --card-gradient-launch:   linear-gradient(145deg, #251800 0%, #301E03 60%, #1A1004 100%);
+    /* Gradientes de categoria — dark (escala de cinza profundo) */
+    --card-gradient-branding: linear-gradient(145deg, #1a1a1a 0%, #242424 60%, #1c1c1c 100%);
+    --card-gradient-traffic:  linear-gradient(145deg, #1c1c1c 0%, #262626 60%, #1e1e1e 100%);
+    --card-gradient-content:  linear-gradient(145deg, #181818 0%, #222222 60%, #1a1a1a 100%);
+    --card-gradient-launch:   linear-gradient(145deg, #1e1e1e 0%, #282828 60%, #202020 100%);
   }
 
   /* ─── Resets globais ─── */
