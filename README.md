@@ -1,7 +1,7 @@
 # 🎥 b.inside — Portfólio Profissional & Visual Curation
 
 <p align="center">
-  <img src="./public/images/feedbacks/imagemKaii.jpg" alt="b.inside Banner" width="100%" max-height="300px" style="object-fit: cover; border-radius: 8px;">
+  <img src="./public/images/imagensReais/FotoProfissional.jpeg" alt="b.inside Banner" width="100%" max-height="300px" style="object-fit: cover; border-radius: 8px;">
 </p>
 
 ## 📌 Sobre o Projeto
