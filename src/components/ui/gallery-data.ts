@@ -10,6 +10,7 @@ export interface GalleryMedia {
   category:  Category
   label:     string
   subtitle?: string   // métrica-chave ou cliente — exibida nos cards de projetos
+  poster?:   string   // imagem de capa para vídeos (evita frame preto com preload="none")
 }
 
 // ── Catálogo completo — varrido estático + cases de marketing ─────────────────
@@ -35,11 +36,11 @@ export const ALL_MEDIA: GalleryMedia[] = [
   { id: 'g10', type: 'image', category: 'social-media', src: '/images/imagensReais/FotoProfissional.jpeg',                 label: 'Profissional' },
   { id: 'g11', type: 'image', category: 'social-media', src: '/images/imagensReais/fotoAleatoria.PNG',                     label: 'Ensaio'       },
 
-  // Vídeos
-  { id: 'g12', type: 'video', category: 'video',        src: '/images/imagensReais/CasamentoBrava/casamentoBravaVideo.MOV',       label: 'Casamento'    },
-  { id: 'g13', type: 'video', category: 'video',        src: '/images/imagensReais/BatizadoDiana/batismoBB.MOV',                  label: 'Batizado'     },
-  { id: 'g14', type: 'video', category: 'video',        src: '/images/imagensReais/FirstLook15anosPai/IMG_7498.MOV',              label: '15 Anos'      },
-  { id: 'g15', type: 'video', category: 'video',        src: '/images/imagensReais/casamentoPrimos/Pré wedding gravado na praia Brava - Gabriel e Maria Eduarda.MOV', label: 'Pré-Wedding' },
+  // Vídeos — poster usa a foto do mesmo evento para evitar frame preto com preload="none"
+  { id: 'g12', type: 'video', category: 'video', src: '/images/imagensReais/CasamentoBrava/casamentoBravaVideo.MOV',                                                   label: 'Casamento',   poster: '/images/imagensReais/CasamentoBrava/CasamentoBrava.jpeg'          },
+  { id: 'g13', type: 'video', category: 'video', src: '/images/imagensReais/BatizadoDiana/batismoBB.MOV',                                                              label: 'Batizado',    poster: '/images/imagensReais/BatizadoDiana/capaBatizadoDiana.jpeg'        },
+  { id: 'g14', type: 'video', category: 'video', src: '/images/imagensReais/FirstLook15anosPai/IMG_7498.MOV',                                                          label: '15 Anos',     poster: '/images/imagensReais/FirstLook15anosPai/IMG_5504.JPG.jpeg'        },
+  { id: 'g15', type: 'video', category: 'video', src: '/images/imagensReais/casamentoPrimos/Pré wedding gravado na praia Brava - Gabriel e Maria Eduarda.MOV',         label: 'Pré-Wedding', poster: '/images/imagensReais/casamentoPrimos/IMG_7623.JPG.jpeg'           },
 
   // Projetos — cases de estratégia e marketing digital (anteriormente em SelectedWork)
   { id: 'p01', type: 'image', category: 'projetos', src: '/images/testimonials/imagem dos conjuntos do brasil.jpg', label: 'Conjuntos do Brasil', subtitle: '22k seguidores · R$ 85k/mês orgânico'    },

@@ -5,6 +5,7 @@ import { HeroSection }          from '@/components/HeroSection'
 import { AboutSection }         from '@/components/AboutSection'
 import { PhotoGallery }         from '@/components/ui/gallery'
 import { ServicesSection }      from '@/components/ServicesSection'
+import { BrandsSection }        from '@/components/BrandsSection'
 import { TestimonialsSection }  from '@/components/TestimonialsSection'
 import { ContactSection }       from '@/components/ContactSection'
 
@@ -17,6 +18,7 @@ export default function App() {
         <AboutSection />
         <PhotoGallery />
         <ServicesSection />
+        <BrandsSection />
         <TestimonialsSection />
         <ContactSection />
       </div>

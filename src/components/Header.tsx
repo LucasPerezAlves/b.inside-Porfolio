@@ -173,23 +173,26 @@ export function Header() {
         <div className="flex items-center gap-2.5">
 
           {/* CTA desktop */}
-          <a
+          <motion.a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ type: 'spring', stiffness: 400, damping: 25 }}
             className={cn(
               'hidden md:inline-flex items-center gap-2',
               'text-xs font-medium px-4 py-2 rounded-full',
               'border border-border bg-transparent',
               'text-foreground',
               'hover:bg-accent hover:text-accent-foreground hover:border-accent',
-              'transition-all duration-200',
+              'transition-[color,background-color,border-color] duration-200',
               'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
             )}
           >
             <MessageCircle size={13} strokeWidth={2} />
             Falar Agora
-          </a>
+          </motion.a>
 
           {/* Botão menu mobile */}
           <button

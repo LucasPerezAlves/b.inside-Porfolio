@@ -3,6 +3,7 @@ import { MapPin, ArrowDownRight } from 'lucide-react'
 import { profile } from '@/data/portfolioData'
 import { cn, imgUrl } from '@/lib/utils'
 import { RevealLine, RevealWords } from '@/components/ui/reveal-text'
+import { VideoShowreel } from '@/components/VideoShowreel'
 
 const EASE = [0.22, 1, 0.36, 1] as const
 
@@ -24,7 +25,7 @@ export function AboutSection() {
         <div className="h-px divider-fade" />
       </div>
 
-      <div className="portfolio-container py-24 lg:py-36">
+      <div className="portfolio-container py-16 lg:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-16 xl:gap-24 items-center">
 
           {/* ── Coluna da foto — mobile: topo · desktop: esquerda ── */}
@@ -140,8 +141,8 @@ export function AboutSection() {
               </motion.p>
             </div>
 
-            {/* CTA suave para a seção de contato */}
-            <motion.div variants={fadeUp} className="mt-9">
+            {/* CTAs — contato + showreel (se URL configurada) */}
+            <motion.div variants={fadeUp} className="mt-9 flex items-center gap-5 flex-wrap">
               <a
                 href="#contato"
                 className="inline-flex items-center gap-2 text-sm font-medium text-foreground group"
@@ -155,6 +156,9 @@ export function AboutSection() {
                   className="text-accent transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5"
                 />
               </a>
+
+              {/* Botão do showreel — só aparece quando SHOWREEL_URL estiver configurada */}
+              <VideoShowreel />
             </motion.div>
 
           </motion.div>

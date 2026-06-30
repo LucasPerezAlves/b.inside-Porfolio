@@ -34,12 +34,13 @@ export interface Profile {
 }
 
 export interface Service {
-  id:           string
-  name:         string
-  icon:         string
-  description:  string
-  deliverables: string[]
-  highlight?:   boolean
+  id:             string
+  name:           string
+  icon:           string
+  description:    string
+  deliverables:   string[]
+  highlight?:     boolean
+  startingPrice?: string  // TODO: definir preços reais com Kailany
 }
 
 export interface Testimonial {
@@ -75,8 +76,8 @@ export const profile: Profile = {
     {
       platform: 'instagram',
       label:    'Instagram',
-      url:      'https://www.instagram.com/b.insidee/',
-      handle:   '@b.insidee',
+      url:      'https://www.instagram.com/b.inside/',
+      handle:   '@b.inside',
     },
     {
       platform: 'email',
@@ -103,10 +104,10 @@ export const profile: Profile = {
 
 export const services: Service[] = [
   {
-    id:          'svc-001',
-    name:        'Gestão de Redes Sociais',
-    icon:        'LayoutGrid',
-    description: 'Estratégia editorial, produção de conteúdo e gestão completa do perfil — para uma presença digital consistente, com identidade forte e crescimento orgânico real.',
+    id:           'svc-001',
+    name:         'Gestão de Redes Sociais',
+    icon:         'LayoutGrid',
+    description:  'Estratégia editorial, produção de conteúdo e gestão completa do perfil — para uma presença digital consistente, com identidade forte e crescimento orgânico real.',
     deliverables: [
       'Planejamento editorial mensal',
       'Criação de legendas e roteiros',
@@ -115,13 +116,14 @@ export const services: Service[] = [
       'Relatório de desempenho quinzenal',
       'Estratégia de Stories e Reels',
     ],
-    highlight: false,
+    highlight:     false,
+    startingPrice: 'R$ 1.200', // TODO: confirmar valor real com Kailany
   },
   {
-    id:          'svc-002',
-    name:        'Tráfego Pago',
-    icon:        'TrendingUp',
-    description: 'Estruturação, gestão e otimização de campanhas no Meta Ads e Google Ads focadas em performance — ROAS, CAC e volume de leads controlados por dados.',
+    id:           'svc-002',
+    name:         'Tráfego Pago',
+    icon:         'TrendingUp',
+    description:  'Estruturação, gestão e otimização de campanhas no Meta Ads e Google Ads focadas em performance — ROAS, CAC e volume de leads controlados por dados.',
     deliverables: [
       'Auditoria da conta existente',
       'Estrutura de campanhas por funil',
@@ -130,13 +132,14 @@ export const services: Service[] = [
       'Testes A/B de criativos e copies',
       'Relatório de performance mensal',
     ],
-    highlight: true,
+    highlight:     true,
+    startingPrice: 'R$ 1.800', // TODO: confirmar valor real com Kailany
   },
   {
-    id:          'svc-003',
-    name:        'Estratégia de Conteúdo',
-    icon:        'FileText',
-    description: 'Diagnóstico completo do posicionamento digital e construção de uma estratégia de conteúdo orientada a atrair, engajar e converter o público ideal.',
+    id:           'svc-003',
+    name:         'Estratégia de Conteúdo',
+    icon:         'FileText',
+    description:  'Diagnóstico completo do posicionamento digital e construção de uma estratégia de conteúdo orientada a atrair, engajar e converter o público ideal.',
     deliverables: [
       'Definição e análise de ICP',
       'Mapeamento da jornada de compra',
@@ -145,13 +148,14 @@ export const services: Service[] = [
       'Pautas prontas para conteúdo',
       'Framework de pilares de conteúdo',
     ],
-    highlight: false,
+    highlight:     false,
+    startingPrice: 'R$ 2.500', // TODO: confirmar valor real com Kailany
   },
   {
-    id:          'svc-004',
-    name:        'Consultoria & Mentoria',
-    icon:        'Lightbulb',
-    description: 'Sessão estratégica 1:1 para diagnóstico do marketing digital do seu negócio, com plano de ação personalizado e priorizações claras para os próximos 90 dias.',
+    id:           'svc-004',
+    name:         'Consultoria & Mentoria',
+    icon:         'Lightbulb',
+    description:  'Sessão estratégica 1:1 para diagnóstico do marketing digital do seu negócio, com plano de ação personalizado e priorizações claras para os próximos 90 dias.',
     deliverables: [
       'Diagnóstico do marketing atual',
       'Análise da concorrência',
@@ -160,13 +164,14 @@ export const services: Service[] = [
       'Gravação da sessão',
       '15 dias de suporte por e-mail',
     ],
-    highlight: false,
+    highlight:     false,
+    startingPrice: 'R$ 800', // TODO: confirmar valor real com Kailany
   },
   {
-    id:          'svc-005',
-    name:        'Lançamentos Digitais',
-    icon:        'Rocket',
-    description: 'Planejamento e execução completos de lançamentos PLT ou perpétuos — da captação de leads à abertura de carrinho, com funil, e-mails e mídia paga integrados.',
+    id:           'svc-005',
+    name:         'Lançamentos Digitais',
+    icon:         'Rocket',
+    description:  'Planejamento e execução completos de lançamentos PLT ou perpétuos — da captação de leads à abertura de carrinho, com funil, e-mails e mídia paga integrados.',
     deliverables: [
       'Estratégia completa de lançamento',
       'Funil de captação com tráfego pago',
@@ -175,7 +180,8 @@ export const services: Service[] = [
       'Campanhas de retargeting',
       'Análise pós-lançamento',
     ],
-    highlight: false,
+    highlight:     false,
+    startingPrice: 'R$ 3.500', // TODO: confirmar valor real com Kailany
   },
 ]
 
@@ -230,62 +236,62 @@ export const testimonials: Testimonial[] = [
 export const circularTestimonials: CircularTestimonialItem[] = [
   {
     quote:       'Que lindo muito obrigada\nAmei',
-    name:        'Cliente 1',
-    designation: 'Ensaio Casual',
+    name:        'Ana C.', // TODO: confirmar nome real com Kailany
+    designation: 'Ensaio Casual · Santa Catarina',
     src:         '/images/feedbacks/ensaioCasual.jpg',
   },
   {
     quote:       'Ficou muito bom Kai, maravilhoso\nEu TB amei esse vídeo 🥰🥰',
-    name:        'Cliente 2',
-    designation: 'Produção de Vídeo',
+    name:        'Lucas M.', // TODO: confirmar nome real com Kailany
+    designation: 'Produção de Vídeo · Santa Catarina',
     src:         '/images/feedbacks/producaoVideo.jpg',
   },
   {
     quote:       'Amei a sessão de fotos! O ambiente, o profissionalismo e a experiência foi sensacional. Me senti super à vontade e o resultado ficou incrível. Obrigada pelo trabalho e dedicação!!',
-    name:        'Cliente 3',
-    designation: 'Sessão Fotográfica Studio',
+    name:        'Mariana S.', // TODO: confirmar nome real com Kailany
+    designation: 'Sessão Fotográfica Studio · Florianópolis/SC',
     src:         '/images/feedbacks/fotoEstudio.jpg',
   },
   {
     quote:       'Ficou lindo Kay!!\nMuito muito obrigado 👏\nGratidão ❤️\nFicaram lindas 😍',
-    name:        'Cliente 4',
-    designation: 'Ensaio Externo',
+    name:        'Pedro L.', // TODO: confirmar nome real com Kailany
+    designation: 'Ensaio Externo · Santa Catarina',
     src:         '/images/feedbacks/ensaioExterno.jpg',
   },
   {
     quote:       'Oi, passando para dizer que amei o seu trabalho, superou todas as minhas expectativas, conseguimos transformar uma simples ideia em uma produção incrível, parabéns pelo profissionalismo e pretendo seguir com a produção para os meus próximos conteúdos, obrigada!! 🥰❤️',
-    name:        'Cliente 5',
-    designation: 'Produção de Conteúdo / Brand',
+    name:        'Carol B.', // TODO: confirmar nome real com Kailany
+    designation: 'Produção de Conteúdo · Brand',
     src:         '/images/feedbacks/produtorConteudo.jpg',
   },
   {
     quote:       'Só recebi elogios do video e fotos, muitooooo lindas!!! Obrigada por entrar nessa loucura de ir pra outra cidade e acordar as 4h da manhã, foi muito divertido e mágico 💕\nJá estou ansiosa pelos videos do casamento em si\nvocê é topppp',
-    name:        'Noiva',
-    designation: 'Pré-Wedding',
+    name:        'Noiva', // TODO: confirmar se Kailany deseja manter anônimo ou nomear
+    designation: 'Pré-Wedding · Praia Brava/SC',
     src:         '/images/feedbacks/noiva.jpg',
   },
   {
     quote:       'coisa linda, feliz demais por você! que o senhor se faça presente nesse momento e abençoe vocês pelo resto de suas vidas! 🤍✨\nMeu Deus to chorando, que coisa mais linda 🥺😭😍\nque lindoooooo 🥺🥺😍😍😭😭😭\nmostrei ate pro meu pai\nQue lindo 🥺🥺😍😍😭😭',
-    name:        'Cliente 7',
-    designation: 'Casamento / Cerimônia',
+    name:        'Casal Oliveira', // TODO: confirmar nome real com Kailany
+    designation: 'Casamento · Cerimônia',
     src:         '/images/feedbacks/casamento.jpeg',
   },
   {
     quote:       'Oiii! ✨\nTudo bem? 🥰❤️\nQueremos te agradecer, você faz um excelente trabalho, cada vídeo ficou simplesmente incrível!!!\nParabéns, você fez muito além do que esperávamos Kai, obrigado do fundo do nosso coração. ❤️',
-    name:        'Cliente 8',
-    designation: 'Vídeo Clipe Premium',
+    name:        'Casal Santos', // TODO: confirmar nome real com Kailany (era "Cliente 8")
+    designation: 'Vídeo Clipe Premium · Santa Catarina',
     src:         '/images/feedbacks/casamentoDois.jpeg',
   },
   {
     quote:       'Oii quero agradecer por tudo , pela sua presença,seu trabalho é maravilhoso as fotos, vídeos, tudo ficou perfeito 🙏 gratidão 🙏 que Deus abençoe sua carreira e continue sendo essa fotógrafa maravilhosa que através de você , podemos recordar e guardar cada momento especial do primeiro aninho da nossa princesa 😍🙏❤️',
-    name:        'Mãe da Princesa',
-    designation: 'Aniversário Infantil',
+    name:        'Mãe da Princesa', // TODO: confirmar se Kailany deseja manter anônimo ou nomear
+    designation: 'Aniversário Infantil · 1 ano',
     src:         '/images/feedbacks/aniverInfantil.jpg',
   },
   {
     quote:       'Oi Kailany\nPassando para te agradecer e parabenizar pelo trabalho realizado Sem dúvidas um acerto nas nossas decisões e a tranquilidade de poder aproveitar cada momento do evento sabendo que você está registrando tudo\nCada vídeo e foto registrado ficou incrível e certamente iremos guardar para sempre\nObrigado pelo carinho 👏🏻🤍',
-    name:        'Cliente 10',
-    designation: 'Cobertura de Evento / Festa',
+    name:        'Família Pereira', // TODO: confirmar nome real com Kailany
+    designation: 'Cobertura de Evento · Festa',
     src:         '/images/feedbacks/festa.jpg',
   },
 ]

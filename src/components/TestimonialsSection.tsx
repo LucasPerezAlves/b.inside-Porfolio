@@ -32,7 +32,7 @@ export function TestimonialsSection() {
         <div className="absolute -bottom-24 -right-24 w-[40vw] h-[40vw] max-w-xl max-h-xl rounded-full blur-[140px] opacity-[0.04] bg-accent" />
       </div>
 
-      <div className="portfolio-container py-24 lg:py-32">
+      <div className="portfolio-container py-16 lg:py-24">
 
         {/* ── Cabeçalho da seção ── */}
         <motion.div
@@ -40,7 +40,7 @@ export function TestimonialsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="mb-14 lg:mb-20"
+          className="mb-10 lg:mb-14"
         >
           <span className="text-[11px] uppercase tracking-label font-medium text-muted-foreground">
             03 — Depoimentos
