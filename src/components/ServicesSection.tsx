@@ -121,8 +121,8 @@ function ServiceRow({ service, index, whatsappUrl }: ServiceRowProps) {
               ))}
             </div>
 
-            {/* CTA */}
-            <div className="pt-1">
+            {/* CTA + Preço */}
+            <div className="pt-1 flex items-center justify-between gap-4 flex-wrap">
               <a
                 href={whatsappUrl}
                 target="_blank"
@@ -143,6 +143,12 @@ function ServiceRow({ service, index, whatsappUrl }: ServiceRowProps) {
                   className="transition-transform duration-200 group-hover/cta:translate-x-0.5 group-hover/cta:-translate-y-0.5"
                 />
               </a>
+
+              {service.startingPrice && (
+                <span className="text-[11px] text-muted-foreground/60 font-mono tabular-nums">
+                  a partir de {service.startingPrice}/mês
+                </span>
+              )}
             </div>
           </div>
 
@@ -164,7 +170,7 @@ export function ServicesSection() {
         <div className="h-px divider-fade" />
       </div>
 
-      <div className="portfolio-container py-24 lg:py-32">
+      <div className="portfolio-container py-16 lg:py-24">
 
         {/* ── Cabeçalho da seção ── */}
         <motion.div
@@ -172,7 +178,7 @@ export function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="flex items-end justify-between mb-10 lg:mb-14"
+          className="flex items-end justify-between mb-8 lg:mb-12"
         >
           <div>
             <span className="text-[11px] uppercase tracking-label font-medium text-muted-foreground">

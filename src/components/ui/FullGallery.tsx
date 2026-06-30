@@ -54,20 +54,30 @@ function Lightbox({ item, onClose }: { item: GalleryMedia; onClose: () => void }
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.22 }}
+      transition={{ duration: 0.25 }}
       className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-10"
-      style={{ backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }}
       onClick={onClose}
     >
       {/* Overlay escuro */}
-      <div className="absolute inset-0 bg-black/85" />
+      <div className="absolute inset-0 bg-black/82" />
 
-      {/* Conteúdo */}
+      {/* Blur cinematográfico — anima via opacidade para compatibilidade cross-browser */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.86, y: 20 }}
-        animate={{ opacity: 1, scale: 1,    y: 0  }}
-        exit={{ opacity: 0,    scale: 0.86, y: 20 }}
-        transition={{ duration: 0.32, ease: EASE }}
+        aria-hidden
+        className="absolute inset-0"
+        style={{ backdropFilter: 'blur(22px)', WebkitBackdropFilter: 'blur(22px)' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.4, ease: 'easeOut' }}
+      />
+
+      {/* Conteúdo — expande do centro, fecha rápido */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.93 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.93, transition: { duration: 0.18, ease: 'easeIn' } }}
+        transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
         className="relative z-10 flex items-center justify-center"
         onClick={e => e.stopPropagation()}
       >
@@ -161,7 +171,8 @@ function GridCard({ item, index, onClick }: {
       className={cn(
         'relative overflow-hidden rounded-2xl cursor-pointer group',
         'border border-neutral-200 dark:border-neutral-800',
-        'bg-neutral-100 dark:bg-neutral-900',
+        // Skeleton neutro visível enquanto a mídia não carrega
+        'bg-zinc-200 dark:bg-zinc-900',
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400',
         'aspect-[4/3]',
       )}
@@ -170,6 +181,7 @@ function GridCard({ item, index, onClick }: {
         <video
           ref={videoRef}
           src={imgUrl(item.src)}
+          poster={item.poster ? imgUrl(item.poster) : undefined}
           muted playsInline preload="none"
           className="w-full h-full object-cover object-center pointer-events-none"
           onError={() => { if (videoRef.current) videoRef.current.style.display = 'none' }}
@@ -178,15 +190,15 @@ function GridCard({ item, index, onClick }: {
         <img
           src={imgUrl(item.src)} alt={item.label}
           loading="lazy" draggable={false}
-          className="w-full h-full object-cover object-center pointer-events-none transition-transform duration-500 group-hover:scale-[1.05]"
+          className="w-full h-full object-cover object-center pointer-events-none transition-[transform] duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]"
           onError={e => (e.currentTarget.style.display = 'none')}
         />
       )}
 
-      {/* Overlay no hover */}
-      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
+      {/* Overlay — gradiente que revela de baixo para cima no hover */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-[450ms] ease-out pointer-events-none" />
 
-      {/* Legenda */}
+      {/* Legenda — sempre visível */}
       <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/65 to-transparent p-3 pt-12 pointer-events-none">
         <span className="text-[10px] font-medium text-white/90 uppercase tracking-[0.09em]">
           {item.label}

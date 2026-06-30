@@ -105,6 +105,7 @@ function ScatterCard({ item, index, isMobile }: {
         <video
           ref={videoRef}
           src={imgUrl(item.src)}
+          poster={item.poster ? imgUrl(item.poster) : undefined}
           loop muted playsInline preload="none"
           className="w-full h-full object-cover pointer-events-none"
           onError={e => (e.currentTarget.style.display = 'none')}
@@ -146,7 +147,7 @@ export function PhotoGallery() {
         <div className="h-px divider-fade" />
       </div>
 
-      <div className="portfolio-container py-24 lg:py-32">
+      <div className="portfolio-container py-16 lg:py-24">
 
         {/* Cabeçalho */}
         <motion.div

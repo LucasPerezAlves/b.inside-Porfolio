@@ -1,6 +1,5 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, Check, Copy, MapPin } from 'lucide-react'
+import { motion } from 'framer-motion'
+import { ArrowRight, Mail, MapPin } from 'lucide-react'
 import { profile } from '@/data/portfolioData'
 import { cn, imgUrl } from '@/lib/utils'
 
@@ -37,19 +36,9 @@ const fadeIn = {
 // ── Component ─────────────────────────────────────────────────────────────
 
 export function HeroSection() {
-  const [copied, setCopied] = useState(false)
-
   const emailSocial    = profile.socials.find(s => s.platform === 'email')
   const whatsappSocial = profile.socials.find(s => s.platform === 'whatsapp')
-  const email          = emailSocial?.handle ?? 'ed@edilane.com.br'
-
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(email)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2200)
-    } catch {}
-  }
+  const email          = emailSocial?.handle ?? 'ed.kailany@gmail.com'
 
   return (
     <section
@@ -91,11 +80,11 @@ export function HeroSection() {
                 'inline-flex items-center gap-2',
                 'px-4 py-1.5 rounded-full',
                 'text-[11px] font-medium uppercase tracking-label',
-                'bg-accent-subtle text-accent',
-                'border border-accent/25',
-                'shadow-[0_0_0_3px_var(--accent-subtle)]'
+                'bg-emerald-950/60 text-emerald-400',
+                'border border-emerald-500/25',
+                'shadow-[0_0_0_3px_rgba(16,185,129,0.06)]'
               )}>
-                <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 {profile.availability}
               </span>
             </motion.div>
@@ -164,10 +153,13 @@ export function HeroSection() {
               className="flex flex-wrap items-center gap-3 pt-1"
             >
               {/* CTA primário */}
-              <a
+              <motion.a
                 href={whatsappSocial?.url ?? '#'}
                 target="_blank"
                 rel="noopener noreferrer"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                 className={cn(
                   'inline-flex items-center gap-2.5',
                   'px-6 py-3 rounded-xl',
@@ -175,60 +167,34 @@ export function HeroSection() {
                   'text-sm font-medium',
                   'shadow-[0_4px_20px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.40)]',
                   'hover:opacity-90 hover:shadow-[0_6px_28px_rgba(0,0,0,0.20)] dark:hover:shadow-[0_6px_28px_rgba(0,0,0,0.50)]',
-                  'active:scale-[0.98]',
-                  'transition-all duration-200',
-                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+                  'transition-[opacity,box-shadow] duration-200',
+                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
                 )}
               >
                 Iniciar um Projeto
                 <ArrowRight size={15} strokeWidth={2} />
-              </a>
+              </motion.a>
 
-              {/* CTA secundário: copiar e-mail */}
-              <button
-                onClick={handleCopyEmail}
-                title="Clique para copiar o e-mail"
+              {/* CTA secundário: link mailto */}
+              <motion.a
+                href={`mailto:${email}`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                 className={cn(
                   'inline-flex items-center gap-2.5',
                   'px-5 py-3 rounded-xl',
                   'border border-border bg-transparent',
                   'text-sm font-mono text-muted-foreground',
                   'hover:border-accent/50 hover:text-foreground hover:bg-muted/60',
-                  'active:scale-[0.98]',
-                  'transition-all duration-200',
+                  'transition-[color,border-color,background-color] duration-200',
                   'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                   'min-w-[200px] justify-center',
-                  copied && 'border-accent/40 text-accent bg-accent-subtle'
                 )}
               >
-                <AnimatePresence mode="wait" initial={false}>
-                  {copied ? (
-                    <motion.span
-                      key="copied"
-                      initial={{ opacity: 0, y: 6, scale: 0.85 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -6, scale: 0.85 }}
-                      transition={{ duration: 0.18, ease: 'easeOut' }}
-                      className="inline-flex items-center gap-2 text-accent text-sm font-sans font-medium"
-                    >
-                      <Check size={14} strokeWidth={2.5} />
-                      Copiado!
-                    </motion.span>
-                  ) : (
-                    <motion.span
-                      key="email"
-                      initial={{ opacity: 0, y: 6, scale: 0.85 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -6, scale: 0.85 }}
-                      transition={{ duration: 0.18, ease: 'easeOut' }}
-                      className="inline-flex items-center gap-2 truncate max-w-[200px]"
-                    >
-                      <Copy size={13} strokeWidth={1.75} />
-                      {email}
-                    </motion.span>
-                  )}
-                </AnimatePresence>
-              </button>
+                <Mail size={13} strokeWidth={1.75} />
+                {email}
+              </motion.a>
             </motion.div>
 
             {/* ── Stats row ── */}
@@ -289,39 +255,8 @@ export function HeroSection() {
                 'transition-shadow duration-300'
               )}
             >
-              {/* Placeholder visível até a foto real ser adicionada */}
-              <div
-                className={cn(
-                  'absolute inset-0 flex flex-col items-center justify-center gap-4',
-                  'bg-gradient-to-br from-accent-subtle via-muted to-background',
-                )}
-              >
-                {/* Avatar com iniciais */}
-                <div
-                  className={cn(
-                    'w-20 h-20 rounded-full',
-                    'flex items-center justify-center',
-                    'border-2 border-accent/30',
-                    'bg-accent/10',
-                    'font-sans text-xl font-semibold text-accent tracking-tight',
-                  )}
-                >
-                  {profile.handle}
-                </div>
-
-                {/* Instrução para o desenvolvedor/cliente */}
-                <div className="text-center px-8">
-                  <p className="text-xs font-medium text-muted-foreground">
-                    Foto profissional
-                  </p>
-                  <p className="text-[11px] text-muted-foreground/60 mt-0.5">
-                    Substitua <code className="font-mono">/images/avatar-placeholder.jpg</code>
-                  </p>
-                  <p className="text-[11px] text-muted-foreground/50">
-                    Recomendado: 800 × 1060 px
-                  </p>
-                </div>
-              </div>
+              {/* Fallback exibido se a foto profissional falhar ao carregar */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent-subtle via-muted to-background" />
 
               {/* Foto real — oculta o placeholder quando o src carrega */}
               <img
