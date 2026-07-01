@@ -6,7 +6,7 @@
 
 ## 📌 Sobre o Projeto
 
-Este projeto nasceu com o propósito de tirar do papel o posicionamento digital premium da **b.inside**, marca e agência de marketing de conteúdo comandada pela profissional **Kailane**, baseada em Santa Catarina. 
+Este projeto nasceu com o propósito de tirar do papel o posicionamento digital premium da **b.inside**, marca e agência de marketing de conteúdo comandada pela profissional **Kailany**, baseada em Santa Catarina. 
 
 Desenvolvido de forma personalizada como um presente de apoio profissional para uma grande amiga, o ecossistema foi projetado para ir além de um portfólio comum de estudante: ele funciona como uma ferramenta de conversão de alto impacto para prospecção de clientes e marcas que buscam serviços de **Storymaking, Fotografia, Social Media e Direção Visual**.
 
