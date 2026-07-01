@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { MapPin, ArrowDownRight } from 'lucide-react'
 import { profile } from '@/data/portfolioData'
 import { cn, imgUrl } from '@/lib/utils'
-import { RevealLine, RevealWords } from '@/components/ui/reveal-text'
+import { RevealLine } from '@/components/ui/reveal-text'
 import { VideoShowreel } from '@/components/VideoShowreel'
 
 const EASE = [0.22, 1, 0.36, 1] as const
@@ -116,28 +116,34 @@ export function AboutSection() {
                 variants={fadeUp}
                 className="text-[0.95rem] text-muted-foreground leading-[1.78]"
               >
-                Cresci em Santa Catarina com uma câmera sempre à mão e os olhos
-                atentos às histórias que passavam despercebidas — pelas ruas, pelas
-                pessoas, pelas marcas. Essa curiosidade se transformou em profissão.
+                Tenho 20 anos e sou fundadora da B.Inside, uma agência especializada
+                em marketing de conteúdo, gestão de redes sociais e cobertura de eventos.
               </motion.p>
               <motion.p
                 variants={fadeUp}
                 className="text-[0.95rem] text-muted-foreground leading-[1.78]"
               >
-                <RevealWords
-                  text="Após 3 anos e mais de 20 projetos entregues, fundei a b.inside com uma crença clara: conteúdo premium não é sobre volume — é sobre a diferença entre uma marca que posta e uma marca que é lembrada."
-                  delay={0.05}
-                  stagger={0.025}
-                />
+                Acredito que uma marca forte vai muito além de posts bonitos: ela precisa
+                transmitir propósito, criar conexão e gerar resultados. Foi com essa visão
+                que construí a B.Inside, ajudando empresas e profissionais a fortalecerem
+                sua presença digital por meio de estratégias criativas e conteúdo autêntico.
               </motion.p>
               <motion.p
                 variants={fadeUp}
                 className="text-[0.95rem] text-muted-foreground leading-[1.78]"
               >
-                Combino olhar estratégico com direção visual para capturar a essência
-                de cada negócio e transformá-la em narrativas que conectam, engajam
-                e convertem. Não sigo tendências — encontro a verdade da sua marca
-                e a torno irresistível.
+                Além do marketing, sou apaixonada por contar histórias. Seja através das
+                redes sociais ou registrando momentos únicos em casamentos, festas de 15
+                anos e eventos, meu objetivo é transformar cada detalhe em uma experiência
+                memorável.
+              </motion.p>
+              <motion.p
+                variants={fadeUp}
+                className="text-[0.95rem] text-muted-foreground leading-[1.78]"
+              >
+                Hoje, dedico meu trabalho a unir criatividade, estratégia e proximidade,
+                oferecendo um atendimento personalizado para que cada cliente tenha uma
+                comunicação que realmente represente sua essência.
               </motion.p>
             </div>
 

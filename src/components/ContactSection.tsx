@@ -27,6 +27,11 @@ export function ContactSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    const subject  = encodeURIComponent(`Novo Contato b.inside - ${form.name}`)
+    const body     = encodeURIComponent(`Olá, me chamo ${form.name}.\n\n${form.message}`)
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=ed.kailany@gmail.com&su=${subject}&body=${body}`
+    window.open(gmailUrl, '_blank', 'noopener,noreferrer')
+    setForm({ name: '', email: '', message: '' })
     setSubmitted(true)
   }
 
@@ -137,9 +142,11 @@ export function ContactSection() {
             variants={fadeUp}
             className="mt-7 flex items-center justify-center flex-wrap gap-3"
           >
-            {/* Link de e-mail — abre cliente de e-mail nativo via mailto */}
+            {/* Link de e-mail — abre composição no Gmail Web em nova aba */}
             <motion.a
-              href={`mailto:${email}`}
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${email}`}
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: 'spring', stiffness: 400, damping: 25 }}
