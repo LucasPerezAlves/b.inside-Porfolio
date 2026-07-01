@@ -45,6 +45,8 @@ O projeto foi construído utilizando as melhores práticas do ecossistema modern
 
 ## 📦 Como rodar o projeto localmente
 
-1. Clone este repositório:
+1. Hospedado na vercel:https://b-inside-porfolio.vercel.app/
+
+2. Clone este repositório:
    ```bash
    git clone [https://github.com/LucasPerezAlves/b.inside-Porfolio.git](https://github.com/LucasPerezAlves/b.inside-Porfolio.git)
