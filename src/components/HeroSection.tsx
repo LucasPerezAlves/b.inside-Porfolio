@@ -175,9 +175,11 @@ export function HeroSection() {
                 <ArrowRight size={15} strokeWidth={2} />
               </motion.a>
 
-              {/* CTA secundário: link mailto */}
+              {/* CTA secundário: abre composição no Gmail Web em nova aba */}
               <motion.a
-                href={`mailto:${email}`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${email}`}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 25 }}
@@ -197,30 +199,6 @@ export function HeroSection() {
               </motion.a>
             </motion.div>
 
-            {/* ── Stats row ── */}
-            <motion.div
-              variants={fadeUp}
-              className="pt-4 mt-1 w-full"
-            >
-              <div className="h-px divider-fade mb-5" />
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {profile.stats.map((stat, i) => (
-                  <div key={i} className="flex flex-col gap-0.5">
-                    <span
-                      className={cn(
-                        'font-serif font-medium leading-none tracking-[-0.02em]',
-                        'text-[1.65rem] text-foreground',
-                      )}
-                    >
-                      {stat.value}
-                    </span>
-                    <span className="text-[11px] uppercase tracking-label text-muted-foreground leading-tight mt-0.5">
-                      {stat.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
 
           </motion.div>
 
@@ -274,50 +252,6 @@ export function HeroSection() {
               />
             </div>
 
-            {/* Badge flutuante sobre a foto */}
-            <motion.div
-              initial={{ opacity: 0, x: 16, y: 8 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ delay: 0.9, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className={cn(
-                'absolute -bottom-3 -left-4 lg:-left-8',
-                'flex items-center gap-2.5',
-                'px-4 py-2.5 rounded-2xl',
-                'bg-card border border-border',
-                'shadow-[0_4px_20px_rgba(0,0,0,0.08)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.3)]',
-                'backdrop-blur-sm'
-              )}
-            >
-              <span className="text-xl">✨</span>
-              <div className="flex flex-col gap-px">
-                <span className="text-xs font-medium text-foreground leading-tight">
-                  3+ anos de experiência
-                </span>
-                <span className="text-[11px] text-muted-foreground">
-                  em Conteúdo &amp; Visual
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Badge de resultados */}
-            <motion.div
-              initial={{ opacity: 0, x: -12, y: -8 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ delay: 1.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className={cn(
-                'absolute -top-3 -right-4 lg:-right-6',
-                'flex items-center gap-2',
-                'px-3 py-2 rounded-xl',
-                'bg-accent text-accent-foreground',
-                'shadow-[0_4px_16px_rgba(0,0,0,0.15)] dark:shadow-[0_4px_16px_rgba(0,0,0,0.40)]',
-              )}
-            >
-              <span className="text-lg leading-none">🚀</span>
-              <div className="flex flex-col gap-px">
-                <span className="text-[11px] font-bold leading-tight">R$ 100k+</span>
-                <span className="text-[10px] opacity-80">em tráfego gerenciado</span>
-              </div>
-            </motion.div>
 
           </motion.div>
 

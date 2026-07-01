@@ -76,13 +76,13 @@ export const profile: Profile = {
     {
       platform: 'instagram',
       label:    'Instagram',
-      url:      'https://www.instagram.com/b.inside/',
+      url:      'https://www.instagram.com/b.insidee/',
       handle:   '@b.inside',
     },
     {
       platform: 'email',
       label:    'E-mail',
-      url:      'mailto:ed.kailany@gmail.com',
+      url:      'https://mail.google.com/mail/?view=cm&fs=1&to=ed.kailany@gmail.com',
       handle:   'ed.kailany@gmail.com',
     },
     {
@@ -265,8 +265,8 @@ export const circularTestimonials: CircularTestimonialItem[] = [
     src:         '/images/feedbacks/produtorConteudo.jpg',
   },
   {
-    quote:       'Só recebi elogios do video e fotos, muitooooo lindas!!! Obrigada por entrar nessa loucura de ir pra outra cidade e acordar as 4h da manhã, foi muito divertido e mágico 💕\nJá estou ansiosa pelos videos do casamento em si\nvocê é topppp',
-    name:        'Noiva', // TODO: confirmar se Kailany deseja manter anônimo ou nomear
+    quote:       'Só recebi elogios do video e fotos, muitooooo lindas!!!\nObrigada por entrar nessa loucura de ir pra outra cidade e acordar as 4h da manhã, foi muito divertido e mágico\nJá estou ansiosa pelos videos do casamento em si\nvocê é topppp',
+    name:        'Pré Wedding — Gabriel e Maria Eduarda',
     designation: 'Pré-Wedding · Praia Brava/SC',
     src:         '/images/feedbacks/noiva.jpg',
   },
@@ -283,9 +283,9 @@ export const circularTestimonials: CircularTestimonialItem[] = [
     src:         '/images/feedbacks/casamentoDois.jpeg',
   },
   {
-    quote:       'Oii quero agradecer por tudo , pela sua presença,seu trabalho é maravilhoso as fotos, vídeos, tudo ficou perfeito 🙏 gratidão 🙏 que Deus abençoe sua carreira e continue sendo essa fotógrafa maravilhosa que através de você , podemos recordar e guardar cada momento especial do primeiro aninho da nossa princesa 😍🙏❤️',
-    name:        'Mãe da Princesa', // TODO: confirmar se Kailany deseja manter anônimo ou nomear
-    designation: 'Aniversário Infantil · 1 ano',
+    quote:       'Ameiii\nQue fofinhoooo\nMuito linddooooos\nA carinha dela né, bem faceirinha\nArrasou nas fotos kaiii 🩷',
+    name:        'Aniversário de 5 anos — Martina',
+    designation: 'Aniversário Infantil · 5 anos',
     src:         '/images/feedbacks/aniverInfantil.jpg',
   },
   {
